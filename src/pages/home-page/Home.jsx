@@ -11,14 +11,16 @@ import Slider from "react-slick";
 import Foods from "../../componants/foods/Foods";
 import { useProductContext } from "../../context/productContext";
 import FeatureProduct from "../../componants/featureProducts/FeatureProduct";
+import Product2 from "../../componants/product2/Product2";
 
 function Home() {
-  const { topSelling, trending } = useProductContext();
+  const { topSelling, dailyBestDeals, trending, recentlyAdded, topRated } =
+    useProductContext();
   var settings = {
     dots: false,
     // infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     arrows: true,
     autoplay: true,
@@ -29,7 +31,7 @@ function Home() {
 
     // fade: true,
   };
-  const fName = useProductContext();
+
   return (
     <>
       <HomeSlider />
@@ -131,20 +133,15 @@ function Home() {
               </div>
             </div>
             <div className="col-10 product-box ">
-              <Slider {...settings}>
-                <div className="item ">
-                  <Product />
-                </div>
-                <div className="item">
-                  <Product />
-                </div>
-                <div className="item">
-                  <Product />
-                </div>
-                <div className="item">
-                  <Product />
-                </div>
-              </Slider>
+              <div className="">
+                <Slider {...settings}>
+                  {dailyBestDeals.map((val) => {
+                    return val.map((val) => {
+                      return <Product2 value={val} />;
+                    });
+                  })}
+                </Slider>
+              </div>
             </div>
           </div>
         </div>
@@ -177,12 +174,26 @@ function Home() {
                 });
               })}
             </div>
-            {/* <div className="col-3">
-              <Foods title={"Recently added"} />
+            <div className="col-3">
+              <div className="heading border-b-2 pb-4 mb-4">
+                <div className="hd">Recently added</div>
+              </div>
+              {recentlyAdded.map((val) => {
+                return val.map((val) => {
+                  return <Foods value={val} />;
+                });
+              })}
             </div>
             <div className="col-3">
-              <Foods title={"Top Rated"} />
-            </div> */}
+              <div className="heading border-b-2 pb-4 mb-4">
+                <div className="hd">Top Rated</div>
+              </div>
+              {topRated.map((val) => {
+                return val.map((val) => {
+                  return <Foods value={val} />;
+                });
+              })}
+            </div>
           </div>
         </div>
       </div>

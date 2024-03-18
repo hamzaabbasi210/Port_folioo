@@ -11,6 +11,9 @@ const initialState = {
   featureProducts: [],
   topSelling: [],
   trending: [],
+  recentlyAdded: [],
+  topRated: [],
+  dailyBestDeals: [],
 };
 
 const AppProvider = ({ children }) => {
@@ -26,6 +29,9 @@ const AppProvider = ({ children }) => {
       dispatch({ type: "SET_FEATURE_API_DATA", payload: products });
       dispatch({ type: "SET_TOPSELLING_API_DATA", payload: products });
       dispatch({ type: "SET_TRENDING_API_DATA", payload: products });
+      dispatch({ type: "SET_RECENTLYADDED_API_DATA", payload: products });
+      dispatch({ type: "SET_TOPRATED_API_DATA", payload: products });
+      dispatch({ type: "SET_DAILYBESTDEALS_API_DATA", payload: products });
     } catch (error) {
       dispatch({ type: "API_ERROR" });
     }

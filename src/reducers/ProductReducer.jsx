@@ -42,6 +42,22 @@ const productReducer = (state, action) => {
         topSelling: topSelling,
       };
     }
+    case "SET_RECENTLYADDED_API_DATA": {
+      const recentlyAddedProducts = action.payload.map((val) => {
+        return val.items.flatMap((val) => {
+          return val.products.filter((val) => {
+            return val.recently === true;
+          });
+        });
+      });
+      return {
+        ...state,
+        isLoading: false,
+        Products: action.payload,
+        recentlyAdded: recentlyAddedProducts,
+      };
+      // console.log(recentlyAdded);
+    }
     case "SET_TRENDING_API_DATA": {
       const trendingProducts = action.payload.map((val) => {
         // console.log(val.items);
@@ -57,6 +73,38 @@ const productReducer = (state, action) => {
         isLoading: false,
         Products: action.payload,
         trending: trendingProducts,
+      };
+    }
+    case "SET_TOPRATED_API_DATA": {
+      const topRated = action.payload.map((val) => {
+        return val.items.flatMap((val) => {
+          return val.products.filter((val) => {
+            return val.topRated === true;
+          });
+        });
+      });
+      // console.log(topRated);
+      return {
+        ...state,
+        isLoading: false,
+        Products: action.payload,
+        topRated: topRated,
+      };
+    }
+    case "SET_DAILYBESTDEALS_API_DATA": {
+      const dailyBestDeals = action.payload.map((val) => {
+        return val.items.flatMap((val) => {
+          return val.products.filter((val) => {
+            return val.dailyBestDeals === true;
+          });
+        });
+      });
+      console.log(dailyBestDeals);
+      return {
+        ...state,
+        isLoading: false,
+        Products: action.payload,
+        dailyBestDeals: dailyBestDeals,
       };
     }
     case "API_ERROR": {

@@ -166,7 +166,8 @@
       ],
       "rating": 4.5,
       "description": "Fortune Soya Wadi / Chunks are light, soft and easy on your stomach. Does your family need champion wala dum aur yum? From biryanis to pulao and even Chinese fried rice, cooked soya chunks can be added to numerous rice dishes. Fortune Soya Chunk - ''Yum jo de champion ko dum'', so buy Fortune Soya Wadi / Chunks online now!",
-      "id": 8
+      "id": 8,
+      "topRated": true
     }
   ]
 },
@@ -226,9 +227,10 @@
         "https://www.jiomart.com/images/product/original/491135471/amul-cow-ghee-1-l-pouch-product-images-o491135471-p491135471-1-202203170918.jpg",
         "https://www.jiomart.com/images/product/original/491135471/amul-cow-ghee-1-l-pouch-legal-images-o491135471-p491135471-2-202203170918.jpg"
       ],
-      "rating": 0,
+      "rating": 2.5,
       "description": "Ghee is a class of clarified butter that originated in ancient India. It is commonly used in Indian cooking. Amul Cow Ghee can be swapped for vegetable oil or coconut oil in baked goods or can be used for deep-frying. Or simply melt it and spread it on roti, or pour it on vegetables/dal before serving. So go ahead and buy this product online today!",
-      "id": 11
+      "id": 11,
+      "recently":true
     },
     {
       "productName": "Amul Cow Ghee 500 ml (Pouch)",
@@ -280,7 +282,8 @@
       ],
       "rating": 4,
       "description": "Khedut haat provides you with the pure cow ghee from the milk . Our ghee provides you with all the nutrients needed and only in the vessels made with Soil (Mitti) has taken an initiative for farmers to keep their strength which is a cow. All our products are directly or indirectly related to Cows & Buffalows. this milk to make milk-made dairy products. Cow dung and cow urine for fertilizing the soil. We do not use chemical fertilizers ",
-      "id": 14
+      "id": 14,
+      "recently":true
     }
   ]
 },
@@ -306,7 +309,8 @@
       "description": "Aashirvaad Superior MP Whole Wheat Atta provides goodness of taste in every bite. Also, it has a sweet and aromatic taste that works together to give you fuller and softer rotis, every single time. Buy Aashirvaad Superior MP Whole Wheat Atta online now!",
       "id": 15,
       "feature":true,
-      "tag":"top"
+      "tag":"top",
+      "recently":true
     },
     {
       "productName": "Aashirvaad Select Sharbati Whole Wheat Atta 1 kg",
@@ -324,7 +328,8 @@
       ],
       "rating": 0,
       "description": "Aashirvaad ensures that only superior quality ingredients reach your kitchen and Aashirvaad Select Sharbati stays true to that word. Made from the King of Wheat Sharbati, Aashirvaad Select is a premium quality aata which is made with love in India. This sharbati wheat flour contains MP Sharbati wheat from the select regions of Madhya Pradesh. The grains of sharabati atta are consistent in size and have a golden sheen to it. The dough made from the King of Wheat Sharbati, absorbs more water which leads to the rotis being sweet in taste and softer in texture. Buy Aashirvaad Select Sharbati Whole Wheat Atta now!",
-      "id": 16
+      "id": 16,
+      "topRated": true
     },
     {
       "productName": "Aashirvaad Superior MP Whole Wheat Atta 2 kg",
@@ -413,7 +418,8 @@
       ],
       "rating": 4.5,
       "description": "Without adding any maida, we have 100% wheat flour to make the dough smoother.\n\nThe atta is so perfectly blended that the chappatis made by Wheatkart Atta are tastier and softer when they are cold.\n\nAtta or chakki atta is wheat flour from the Indian subcontinent that is mostly used to create flatbreads like chapati, roti, naan, paratha and puri.",
-      "id": 21
+      "id": 21,
+      "topRated": true
     }
   ]
 },
@@ -525,9 +531,8 @@
       ],
       "rating": 4.5,
       "description": "Green Elaichi or Green Cardamom is also known as the 'Queen of Spices'. It is the most common spice used in a variety of sweet and savoury dishes. It is also added to tea and coffee for its unique fragrance and flavour. Buy Lotus Spices Green Elaichi online today!\n",
-      "id": 27
-    }
-  ]
+      "id":27
+}]
 },
 {
   "cat_name": "Rice & Rice Products",
@@ -614,7 +619,8 @@
       ],
       "rating": 4.5,
       "description": "Basmati Broken Rice is everyday Broken Rice that makes each meal memorable. It is ideal for people who like to include Broken Rice in their daily meal consumption. Aromatic, flavourful, and defined by its distinctly long and slender grains, Daawat Rozana Super Basmati Broken Rice turns every meal into comfort food. Go and grab your pack now! Buy Daawat Rozana Super Basmati Broken Rice online now!\n",
-      "id": 34
+      "id": 34,
+      "dailyBestDeals":true
     }
   ]
 }
@@ -650,7 +656,9 @@
           ],
           "rating": 4.5,
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          "id": 35
+          "id": 35,
+          "dailyBestDeals":true,
+          "tag":"hot"
         },
         {
           "productName": "Apple iPhone 13 128 GB, Midnight (Black)",
@@ -690,7 +698,9 @@
           ],
           "rating": 4.2,
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          "id": 37
+          "id": 37,
+          "dailyBestDeals":true,
+          "tag":"hot"
         },
         {
           "productName": "Realme C55 DLC 64GB, 4 GB RAM, Sunshower, Mobile Phone",
@@ -727,7 +737,9 @@
           ],
           "rating": 4.5,
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          "id": 39
+          "id": 39,
+          "dailyBestDeals":true,
+          "tag":"sale"
         }
       ]
     },
@@ -772,7 +784,9 @@
           ],
           "rating": 4.5,
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          "id": 41
+          "id": 41,
+          "dailyBestDeals":true,
+          "tag":"new"
         },
 
   {
@@ -810,7 +824,9 @@
     ],
     "rating": 4,
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    "id": 43
+    "id": 43,
+    "dailyBestDeals":true,
+    "tag":"hot"
   }
 
 
@@ -865,7 +881,9 @@
           ],
           "rating": 5,
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          "id": 45
+          "id": 45,
+          "dailyBestDeals":true,
+          "tag":"deal"
         },
         {
           "productName": "Plutus Men Black Solid Polyester Casual Jacket M",
@@ -951,7 +969,9 @@
           ],
           "rating": 4.5,
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          "id": 49
+          "id": 49,
+          "dailyBestDeals":true,
+          "tag":"top"
         },
         {
           "productName": "Fabflee Party Flared Sleeves Printed Women Yellow Top | Women Tops | Crepe Top | Tops For Women",
@@ -993,14 +1013,15 @@
           ],
           "rating": 5,
           "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          "id": 51
+          "id": 51,
+          "dailyBestDeals":true,
+          "tag":"new"
         }
       ]
     }
-  ]
+]
 }
 
 
 
-  ]
-}
+]}

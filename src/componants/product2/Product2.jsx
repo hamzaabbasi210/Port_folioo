@@ -21,7 +21,7 @@ function Product2(props) {
               {props.value.tag}
             </div>
             <div className="product-img relative ">
-              <div className="img flex items-center justify-center">
+              <div className="img flex items-center justify-center h-56 overflow-hidden">
                 <img
                   src={props.value.catImg}
                   alt=""
@@ -52,7 +52,7 @@ function Product2(props) {
                 <strong>
                   {" "}
                   {props.value.productName.length > 18
-                    ? props.value.productName.substr(0, 16) + "...."
+                    ? props.value.productName.substr(0, 14) + "...."
                     : props.value.productName}
                 </strong>
               </h1>

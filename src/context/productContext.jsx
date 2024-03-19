@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useReducer } from "react";
 import reducer from "../reducers/ProductReducer";
+import { useParams } from "react-router";
 const AppContext = createContext();
 
 const Api = "http://localhost:3000/productData";
@@ -14,11 +15,14 @@ const initialState = {
   recentlyAdded: [],
   topRated: [],
   dailyBestDeals: [],
+  isSingleError: false,
+  isSingleLoading: false,
+  singleProduct: {},
 };
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  const { id } = useParams;
   const getProducts = async (url) => {
     dispatch({ type: "SET_LOADING" });
 
@@ -37,12 +41,41 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  // my 2nd api call for single product
+
+  const getSingleProduct = async (url) => {
+    dispatch({ type: "SET_SINGLE_LOADING" });
+    try {
+      const res = await axios.get(url);
+      const singleProduct = await res.data;
+      // console.log(singleProduct);
+      dispatch({ type: "SET_SINGLE_PRODUCT", payload: singleProduct });
+    } catch (error) {
+      dispatch({ type: "SET_SINGLE_ERROR" });
+    }
+  };
+
+  // const getSingleProduct = async (url) => {
+  //   dispatch({ type: "SET_SINGLE_LOADING" });
+  //   try {
+  //     const res = await axios.get(url);
+  //     const singleProduct = await res.data;
+  //     // console.log(singleProduct);
+  //     dispatch({ type: "SET_SINGLE_PRODUCT_DATA", payload: singleProduct });
+  //   } catch (error) {
+  //     dispatch({ type: "SINGLE_API_ERROR" });
+  //   }
+  // console.log(getSingleProduct);
+  // };
+
   useEffect(() => {
     getProducts(Api);
   }, []);
 
   return (
-    <AppContext.Provider value={{ ...state }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ ...state, getSingleProduct }}>
+      {children}
+    </AppContext.Provider>
   );
 };
 

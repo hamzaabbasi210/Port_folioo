@@ -5,15 +5,16 @@ import { FaRegHeart, FaRegEye } from "react-icons/fa";
 import { MdOutlineCompareArrows } from "react-icons/md";
 import { useProductContext } from "../../context/productContext";
 import "./Product2.css";
-
+import { NavLink } from "react-router-dom";
 function Product2(props) {
   const featureProducts = useProductContext();
-  // console.log(featureProducts);
+
   return (
     <>
       <div className="product2-container">
         <div className="container-flu ">
           {/* <div className="feature-product-box w-96 "> */}
+          {/* <NavLink to={`/singleProduct/${props.value.id}`}> */}
           <div className="featureProductCard relative m-0 shadow-xl py-8 px-4 rounded-lg border border-[#ececec] hover:shadow-2xl-[#3BB77E] ">
             <div
               className={`badge  py-2  px-3  rounded-tr-3xl rounded-bl-3xl left-0  bg-black absolute top-0 left-0 z-10 rounded-none ${props.value.tag}`}
@@ -21,13 +22,16 @@ function Product2(props) {
               {props.value.tag}
             </div>
             <div className="product-img relative ">
-              <div className="img flex items-center justify-center h-56 overflow-hidden">
-                <img
-                  src={props.value.catImg}
-                  alt=""
-                  className="w- py-4 px-8 hover:scale-125 transition-all"
-                />
-              </div>
+              <NavLink to={`/singleproduct/${props.value.id}`}>
+                <div className="img flex items-center justify-center h-56 overflow-hidden">
+                  <img
+                    src={props.value.catImg}
+                    alt=""
+                    className="w- py-4 px-8 hover:scale-125 transition-all"
+                  />
+                </div>
+              </NavLink>
+
               <div className="img-overlay left-[50%] transform -translate-x-1/2 -translate-y-1/2 border  h-8 bg-white absolute top-[50%] ">
                 <ul className="flex items-center justify-between gap-  h-full  ">
                   <li tooltip="Add to Wishlist">
@@ -90,6 +94,7 @@ function Product2(props) {
               </div>
             </div>
           </div>
+          {/* </NavLink> */}
         </div>
       </div>
       {/* </div> */}

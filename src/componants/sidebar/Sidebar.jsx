@@ -25,10 +25,13 @@ function Sidebar() {
           <div className="box mb-8 ">
             <div className="cards shadow-xl rounded-lg max-h-[29rem] overflow-hidden px-4 mb-4 ">
               <div className="hd border-b-2 py-4">category</div>
-              {categoryData.map((val) => {
+              {categoryData.map((val, index) => {
                 return (
                   <>
-                    <div className="cat-list flex items-center justify-between mt-4 mb-2 py-2 px-2 border rounded-md">
+                    <div
+                      key={index}
+                      className="cat-list flex items-center justify-between mt-4 mb-2 py-2 px-2 border rounded-md"
+                    >
                       <div className="img">
                         <img src={val.img} alt="" className="w-7" />
                       </div>

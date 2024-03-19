@@ -65,32 +65,78 @@ function Nav() {
           </div>
           <div className="col-7 navigation-menu borde cursor flex items-center justify-cente   text-base text-black ">
             <Button>
-              <NavLink exact="true" to="/">
+              <NavLink
+                exact="true"
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "text-[#3BB77D]" : "text-black"
+                }
+              >
                 home
               </NavLink>
             </Button>
             <Button>
-              <NavLink exact="true" to="/about">
+              <NavLink
+                exact="true"
+                to="/about"
+                className={({ isActive }) =>
+                  isActive ? "text-[#3BB77D]" : "text-black"
+                }
+              >
                 About
               </NavLink>
             </Button>
             <Button>
-              <NavLink exact="true" to="/listing">
+              <NavLink
+                exact="true"
+                to="/listing"
+                className={({ isActive }) =>
+                  isActive ? "text-[#3BB77D]" : "text-black"
+                }
+              >
                 shop
               </NavLink>
             </Button>
             <Button>
-              <NavLink>vendors</NavLink>
+              <NavLink
+                to="/vendor"
+                className={({ isActive }) =>
+                  isActive ? "text-[#3BB77D]" : "text-black"
+                }
+              >
+                vendors
+              </NavLink>
             </Button>
             <MegaMenu />
             <Button>
-              <NavLink>blog</NavLink>
+              <NavLink
+                to="/blog"
+                className={({ isActive }) =>
+                  isActive ? "text-[#3BB77D]" : "text-black"
+                }
+              >
+                blog
+              </NavLink>
             </Button>
             <Button>
-              <NavLink>pages</NavLink>
+              <NavLink
+                to="/pages"
+                className={({ isActive }) =>
+                  isActive ? "text-[#3BB77D]" : "text-black"
+                }
+              >
+                pages
+              </NavLink>
             </Button>
             <Button>
-              <NavLink>contact</NavLink>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  isActive ? "text-[#3BB77D]" : "text-black"
+                }
+              >
+                contact
+              </NavLink>
             </Button>
           </div>
           <div className="col-2 borde flex items-center justify-center gap-3">

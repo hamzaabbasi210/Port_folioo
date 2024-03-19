@@ -99,7 +99,7 @@ const productReducer = (state, action) => {
           });
         });
       });
-      console.log(dailyBestDeals);
+      // console.log(dailyBestDeals);
       return {
         ...state,
         isLoading: false,
@@ -113,7 +113,49 @@ const productReducer = (state, action) => {
         isError: true,
       };
     }
+
+    case "SET_SINGLE_LOADING":
+      return {
+        ...state,
+        isSingleLoading: true,
+      };
+
+    case "SET_SINGLE_PRODUCT":
+      return {
+        ...state,
+        isSingleLoading: false,
+        singleProduct: action.payload,
+      };
+
+    case "SET_SINGLE_ERROR":
+      return {
+        ...state,
+        isSingleLoading: false,
+        isError: true,
+      };
+
+    // case "SET_SINGLE_LOADING": {
+    //   return {
+    //     ...state,
+    //     isSingleLoading: true,
+    //   };
+    // }
+    // case "SET_SINGLE_PRODUCT_DATA": {
+    //   return {
+    //     ...state,
+    //     isSingleLoading: false,
+    //     singleProducts: action.payload,
+    //   };
+    // }
+    // case "SINGLE_API_ERROR": {
+    //   return {
+    //     ...state,
+    //     isSingleLoading: false,
+    //     isSingleError: true,
+    //   };
+    // }
+    default:
+      return state;
   }
-  return state;
 };
 export default productReducer;

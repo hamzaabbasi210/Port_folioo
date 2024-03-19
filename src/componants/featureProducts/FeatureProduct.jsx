@@ -1,17 +1,19 @@
 import React from "react";
 import { useProductContext } from "../../context/productContext";
 import Product2 from "../product2/Product2";
+import { NavLink } from "react-router-dom";
 
 function FeatureProduct() {
-  const { isLoading, featureProducts } = useProductContext();
-  if (isLoading) {
+  const { isLoading, featureProducts, isSingleLoading, singleProduct } =
+    useProductContext();
+  // console.log(singleProduct);
+  if (isSingleLoading) {
     return <div>Loading...................</div>;
   }
   if (!featureProducts) {
     return null;
   }
-  //   console.log(featureProducts);
-  // console.log(featureProducts);
+  // console.log(singleProduct);
   return (
     <>
       <div className="feature-product-container py-8">
@@ -21,7 +23,9 @@ function FeatureProduct() {
               return val.map((val) => {
                 return (
                   <>
+                    {/* <NavLink to={`/singleProduct/${val.id}`}> */}
                     <Product2 tag={"hot"} value={val} />
+                    {/* </NavLink> */}
                   </>
                 );
               });

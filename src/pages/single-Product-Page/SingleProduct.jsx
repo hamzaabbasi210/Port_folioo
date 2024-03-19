@@ -1,22 +1,33 @@
 import { Button, Rating } from "@mui/material";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import compare from "../../assets/icon-compare.svg";
 import heart from "../../assets/icon-heart.svg";
 import "./SingleProduct.css";
 import { FaAngleUp } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
 import Sidebar from "../../componants/sidebar/Sidebar";
-import productimg from "../../assets/product1.jpg";
 import InnerImageZoom from "react-inner-image-zoom";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
 import Slider from "react-slick";
+import { useProductContext } from "../../context/productContext";
+
+const API = "http://localhost:3000/productData";
 
 function SingleProduct() {
+  const { getSingleProduct, isSingleLoading, singleProduct } =
+    useProductContext();
+  // console.log(singleProduct);
+  const { id } = useParams();
+  console.log(id);
   const [inpVal, setInpVal] = useState(0);
   const [showImage, setShowImage] = useState("src/assets/product1.jpg");
   const [showInfo, setShowInfo] = useState(0);
+
+  useEffect(() => {
+    getSingleProduct(`${API}?id=${id}`);
+  }, []);
 
   const increment = () => {
     if (inpVal < 10) {
@@ -56,6 +67,7 @@ function SingleProduct() {
     console.log(det.target.src);
     setShowImage(det.target.src);
   };
+  // console.log("first");
   return (
     <>
       <div className="single-product-container  mb-56">
@@ -78,7 +90,7 @@ function SingleProduct() {
           <div className="container-fluid mt-12">
             <div className="row ">
               <div className="col-9">
-                <div className="row bg-purple-400">
+                <div className="row">
                   <div className="col-4">
                     <div className="img shadow-xl w-full h-[%] rounded-lg p-4  ">
                       <InnerImageZoom

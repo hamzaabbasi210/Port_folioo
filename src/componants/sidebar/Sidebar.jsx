@@ -27,18 +27,16 @@ function Sidebar() {
               <div className="hd border-b-2 py-4">category</div>
               {categoryData.map((val, index) => {
                 return (
-                  <>
-                    <div
-                      key={index}
-                      className="cat-list flex items-center justify-between mt-4 mb-2 py-2 px-2 border rounded-md"
-                    >
-                      <div className="img">
-                        <img src={val.img} alt="" className="w-7" />
-                      </div>
-                      <div className="title">{val.title}</div>
-                      <div className="qty">{val.qty}</div>
+                  <div
+                    key={val.id}
+                    className="cat-list flex items-center justify-between mt-4 mb-2 py-2 px-2 border rounded-md"
+                  >
+                    <div className="img">
+                      <img src={val.img} alt="" className="w-7" />
                     </div>
-                  </>
+                    <div className="title">{val.title}</div>
+                    <div className="qty">{val.qty}</div>
+                  </div>
                 );
               })}
             </div>

@@ -16,18 +16,9 @@ import { useProductContext } from "../../context/productContext";
 const API = "http://localhost:3000/productData";
 
 function SingleProduct() {
-  const { getSingleProduct, isSingleLoading, singleProduct } =
-    useProductContext();
-  // console.log(singleProduct);
-  const { id } = useParams();
-  console.log(id);
   const [inpVal, setInpVal] = useState(0);
   const [showImage, setShowImage] = useState("src/assets/product1.jpg");
   const [showInfo, setShowInfo] = useState(0);
-
-  useEffect(() => {
-    getSingleProduct(`${API}?id=${id}`);
-  }, []);
 
   const increment = () => {
     if (inpVal < 10) {
@@ -67,7 +58,7 @@ function SingleProduct() {
     console.log(det.target.src);
     setShowImage(det.target.src);
   };
-  // console.log("first");
+
   return (
     <>
       <div className="single-product-container  mb-56">
@@ -117,18 +108,6 @@ function SingleProduct() {
                             />
                           );
                         })}
-                        {/* {productImages.map((imageUrl, index) => (
-                          <img
-                            key={index}
-                            src={imageUrl}
-                            alt={`Product Image ${index + 1}`} // Add alt text for accessibility
-                            style={{
-                              width: "100px",
-                              height: "px",
-                              margin: "0px",
-                            }} // Set the style for the image
-                          />
-                        ))} */}
                       </Slider>
                     </div>
                   </div>
@@ -187,6 +166,7 @@ function SingleProduct() {
                             type="number"
                             className=" py-2 text-center w-[80%]"
                             value={inpVal}
+                            onChange={(e) => setInpVal(e.target.value)}
                           />
                           <div className="arrows flex flex-col items-center justify-center">
                             <FaAngleUp onClick={increment} />

@@ -22,11 +22,9 @@ function FeatureProduct() {
             {featureProducts.map((val) => {
               return val.map((val) => {
                 return (
-                  <>
-                    {/* <NavLink to={`/singleProduct/${val.id}`}> */}
+                  <div key={val.id}>
                     <Product2 tag={"hot"} value={val} />
-                    {/* </NavLink> */}
-                  </>
+                  </div>
                 );
               });
             })}

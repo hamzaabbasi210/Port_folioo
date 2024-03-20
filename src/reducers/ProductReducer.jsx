@@ -121,10 +121,20 @@ const productReducer = (state, action) => {
       };
 
     case "SET_SINGLE_PRODUCT":
+      const singleProductData = action.payload.map((val) => {
+        return val.items.map((val) => {
+          return val;
+          // return val.products.map((val) => {
+          //   return val;
+          //   console.log(val);
+          // });
+        });
+      });
+      console.log(singleProductData);
       return {
         ...state,
         isSingleLoading: false,
-        singleProduct: action.payload,
+        singleProduct: singleProductData,
       };
 
     case "SET_SINGLE_ERROR":

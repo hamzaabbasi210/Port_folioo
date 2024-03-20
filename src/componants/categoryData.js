@@ -10,14 +10,14 @@ import cat9 from "../assets/209.svg";
 import cat10 from "../assets/209.svg";
 
 export const categoryData = [
-  { img: cat1, title: "Milks and Dairies", qty: "30" },
-  { img: cat2, title: "Milks and Dairies", qty: "25" },
-  { img: cat3, title: "Milks and Dairies", qty: "18" },
-  { img: cat4, title: "Milks and Dairies", qty: "19" },
-  { img: cat5, title: "Milks and Dairies", qty: "33" },
-  { img: cat6, title: "Milks and Dairies", qty: "27" },
-  { img: cat7, title: "Milks and Dairies", qty: "22" },
-  { img: cat8, title: "Milks and Dairies", qty: "12" },
-  { img: cat9, title: "Milks and Dairies", qty: "15" },
-  { img: cat10, title: "Milks and Dairies", qty: "19" },
+  { img: cat1, title: "Milks and Dairies", qty: "30", id: 1 },
+  { img: cat2, title: "Milks and Dairies", qty: "25", id: 2 },
+  { img: cat3, title: "Milks and Dairies", qty: "18", id: 3 },
+  { img: cat4, title: "Milks and Dairies", qty: "19", id: 4 },
+  { img: cat5, title: "Milks and Dairies", qty: "33", id: 5 },
+  { img: cat6, title: "Milks and Dairies", qty: "27", id: 6 },
+  { img: cat7, title: "Milks and Dairies", qty: "22", id: 7 },
+  { img: cat8, title: "Milks and Dairies", qty: "12", id: 8 },
+  { img: cat9, title: "Milks and Dairies", qty: "15", id: 9 },
+  { img: cat10, title: "Milks and Dairies", qty: "19", id: 10 },
 ];

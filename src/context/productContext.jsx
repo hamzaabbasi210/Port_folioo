@@ -17,7 +17,7 @@ const initialState = {
   dailyBestDeals: [],
   isSingleError: false,
   isSingleLoading: false,
-  singleProduct: {},
+  singleProduct: [],
 };
 
 const AppProvider = ({ children }) => {

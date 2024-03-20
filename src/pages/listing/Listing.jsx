@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "../../componants/sidebar/Sidebar";
-import Product from "../../componants/product/Product";
 import { BiCategory } from "react-icons/bi";
 import { TbCategoryPlus } from "react-icons/tb";
-
 import "./Listing.css";
 import { Button } from "@mui/material";
+import Product2 from "../../componants/product2/Product2";
+import { useProductContext } from "../../context/productContext";
+import { useParams } from "react-router";
 
 function ShopListing() {
+  const { Products } = useProductContext();
   const [priceDropdown, setPriceDropdown] = useState(false);
   const [categoryDropdown, setCategoryDropdown] = useState(false);
+
   return (
     <>
       <div className="listing-container my-12">
@@ -82,61 +85,18 @@ function ShopListing() {
                     </div>
                   </div>
                 </div>
-                <div className="product-box">
-                  <div className="ite ">
-                    <Product />
-                  </div>
-                  <div className="ite ">
-                    <Product />
-                  </div>
-                  <div className="ite ">
-                    <Product />
-                  </div>
-                  <div className="ite ">
-                    <Product />
-                  </div>
-                  <div className="ite ">
-                    <Product />
-                  </div>
-                  <div className="ite ">
-                    <Product />
-                  </div>
-                  <div className="ite ">
-                    <Product tag={"top"} />
-                  </div>
-                  <div className="ite ">
-                    <Product />
-                  </div>
-                  <div className="ite ">
-                    <Product />
-                  </div>
-                  <div className="ite ">
-                    <Product />
-                  </div>
-                  <div className="ite ">
-                    <Product />
-                  </div>
-                  <div className="ite ">
-                    <Product />
-                  </div>
-                  <div className="ite ">
-                    <Product />
-                  </div>
-                  <div className="ite ">
-                    <Product />
-                  </div>
-                  <div className="ite ">
-                    <Product />
-                  </div>
-                  <div className="ite ">
-                    <Product />
-                  </div>
-                  <div className="ite ">
-                    <Product />
-                  </div>
-                  <div className="ite ">
-                    <Product />
-                  </div>
+                <div className="product-box mt-6">
+                  {Products.map((val) => {
+                    return val.items.map((val) => {
+                      return val.products.map((val) => {
+                        return (
+                          <div key={val.id} className="feature-product2  mr-6 ">
+                            <Product2 value={val} />;
+                          </div>
+                        );
+                      });
+                    });
+                  })}
                 </div>
               </div>
             </div>

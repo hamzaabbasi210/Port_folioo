@@ -69,38 +69,6 @@ function Home() {
               </ul>
             </div>
           </div>
-          {/* <div className="product-box mt-8 flex items-center flex-wrap">
-            <div className="item">
-              <Product tag={"hot"} />
-            </div>
-            <div className="item">
-              <Product tag={"new"} />
-            </div>
-            <div className="item">
-              <Product tag={"top"} />
-            </div>
-            <div className="item">
-              <Product />
-            </div>
-            <div className="item">
-              <Product tag={"sale"} />
-            </div>
-            <div className="item">
-              <Product tag={"hot"} />
-            </div>
-            <div className="item">
-              <Product tag={"sale"} />
-            </div>
-            <div className="item">
-              <Product />
-            </div>
-            <div className="item">
-              <Product tag={"hot"} />
-            </div>
-            <div className="item">
-              <Product tag={"top"} />
-            </div>
-          </div> */}
         </div>
       </div>
       <FeatureProduct />
@@ -137,7 +105,11 @@ function Home() {
                 <Slider {...settings}>
                   {dailyBestDeals.map((val) => {
                     return val.map((val) => {
-                      return <Product2 value={val} />;
+                      return (
+                        <div key={val.id}>
+                          <Product2 value={val} />
+                        </div>
+                      );
                     });
                   })}
                 </Slider>

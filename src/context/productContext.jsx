@@ -40,7 +40,7 @@ const AppProvider = ({ children }) => {
       dispatch({ type: "API_ERROR" });
     }
   };
-
+  // console.log(getProducts);
   // my 2nd api call for single product
 
   const getSingleProduct = async (url) => {
@@ -69,6 +69,7 @@ const AppProvider = ({ children }) => {
   // };
 
   useEffect(() => {
+    getSingleProduct(Api);
     getProducts(Api);
   }, []);
 

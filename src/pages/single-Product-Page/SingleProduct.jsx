@@ -13,12 +13,38 @@ import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
 import Slider from "react-slick";
 import { useProductContext } from "../../context/productContext";
 
-const API = "http://localhost:3000/productData";
-
+const Api = "http://localhost:3000/productData";
 function SingleProduct() {
+  const { getSingleProduct, singleProduct } = useProductContext();
+  const { id } = useParams();
+  // console.log(id);
+
+  const [curProduct, setCurProduct] = useState({});
   const [inpVal, setInpVal] = useState(0);
   const [showImage, setShowImage] = useState("src/assets/product1.jpg");
   const [showInfo, setShowInfo] = useState(0);
+  console.log(curProduct.id);
+  // console.log(singleProduct);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    singleProduct.map((val) => {
+      return val.items.map((val) => {
+        return val.products.map((val) => {
+          if (parseInt(val.id) === parseInt(id)) {
+            setCurProduct(val);
+          }
+        });
+      });
+    });
+  }, [id]);
+
+  useEffect(() => {
+    // getSingleProduct(`${Api}?id=${id}`);
+    // singleProduct.map((val) => {
+    //   console.log(val);
+    // });
+  }, []);
 
   const increment = () => {
     if (inpVal < 10) {
@@ -88,7 +114,7 @@ function SingleProduct() {
                         zoomType="hover"
                         zoomScale={0.8}
                         // src="src/assets/product1.jpg"
-                        src={showImage}
+                        src={curProduct.catImg}
                         width={1000}
                         height={1000}
                       />
@@ -115,11 +141,11 @@ function SingleProduct() {
                   <div className="col-8 px-12">
                     <div className="product-info ">
                       <h1 className="h text-5xl font-semibold">
-                        Seeds of Change Organic Quinoa, Brown
+                        {curProduct.productName}
                       </h1>
                       <div className="ratting my-4 text-sm flex items-center gap-2">
                         <Rating
-                          defaultValue={4.5}
+                          defaultValue={curProduct.rating}
                           precision={0.5}
                           style={{ fontSize: "1rem" }}
                         />
@@ -127,25 +153,29 @@ function SingleProduct() {
                       </div>
                       <div className="product-price flex items-center  gap-2">
                         <div className="sale-price text-[48px] font-semibold text-[#3BB77E]">
-                          $38
+                          ${curProduct.price}
                         </div>
                         <div className="reg-price text-[px] text-[#ccc] font-bold">
-                          <p className="text-[#FAAF00] text-[14px]"> 26% off</p>
-                          <p className="line-through text-[21px]">$52</p>
+                          <p className="text-[#FAAF00] text-[14px]">
+                            {" "}
+                            {curProduct.discount}% off
+                          </p>
+                          <p className="line-through text-[21px]">
+                            ${curProduct.oldPrice}
+                          </p>
                         </div>
                       </div>
-                      <p className="py-4">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Aliquam rem officia, corrupti reiciendis minima
-                        nisi modi, quasi, odio minus dolore impedit fuga eum
-                        eligendi.
-                      </p>
+                      <p className="py-4">{curProduct.description}</p>
                       <div className="size-weight flex my-4">
                         <p>size/weight</p>
                         <ul className="flex ml-2 gap- ">
-                          <li>
-                            <Button>50g</Button>{" "}
-                          </li>
+                          {/* {curProduct.weight.map((val) => {
+                            return (
+                              <li>
+                                <Button>{val}</Button>
+                              </li>
+                            );
+                          })} */}
                           <li>
                             <Button>70g</Button>{" "}
                           </li>

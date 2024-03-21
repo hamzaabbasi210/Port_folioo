@@ -1,13 +1,23 @@
+import { useEffect } from "react";
 import React from "react";
 import { useProductContext } from "../../context/productContext";
 import Product2 from "../product2/Product2";
 import { NavLink } from "react-router-dom";
 
+// cosnst Api = "http://localhost:3000/productData";
 function FeatureProduct() {
-  const { isLoading, featureProducts, isSingleLoading, singleProduct } =
-    useProductContext();
+  // useEffect(() => {
+  //   getSingleProduct(Api);
+  // }, []);
+  const {
+    isLoading,
+    featureProducts,
+    isSingleLoading,
+    getSingleProduct,
+    singleProduct,
+  } = useProductContext();
   // console.log(singleProduct);
-  if (isSingleLoading) {
+  if (isLoading) {
     return <div>Loading...................</div>;
   }
   if (!featureProducts) {

@@ -21,10 +21,19 @@ function SingleProduct() {
 
   const [curProduct, setCurProduct] = useState({});
   const [inpVal, setInpVal] = useState(0);
-  const [showImage, setShowImage] = useState("src/assets/product1.jpg");
+  const [first, setfirst] = useState(curProduct.brand);
+  const [showImage, setShowImage] = useState([]);
   const [showInfo, setShowInfo] = useState(0);
-  console.log(curProduct.id);
+  // console.log(curProduct.id);
   // console.log(singleProduct);
+
+  singleProduct.map((val) => {
+    return val.items.map((val) => {
+      return val.products.map((val) => {
+        // setShowImage(val.catImg);
+      });
+    });
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -80,10 +89,19 @@ function SingleProduct() {
     autoplay: true,
     autoplaySpeed: 1500,
   };
+  // const helo = (det) => {
+  //   console.log(det.target.src);
+  //   setShowImage(det.target.src);
+  // };
   const helo = (det) => {
-    console.log(det.target.src);
-    setShowImage(det.target.src);
+    if (det && det.target && det.target.src) {
+      console.log(det.target.src);
+      setShowImage(det.target.src);
+    } else {
+      console.error("Invalid event or target in helo function:", det);
+    }
   };
+  // console.log(curProduct.productImages);
 
   return (
     <>
@@ -96,10 +114,11 @@ function SingleProduct() {
                   <Link href="#">Home</Link>
                 </li>
                 <li className="breadcrumb-item">
-                  <Link href="#">Vegetables & Tubers </Link>
+                  <Link href="#">Vegetables & Tubers{curProduct.brand} </Link>
                 </li>
                 <li className="breadcrumb-item active" aria-current="page">
-                  Seeds Of Change Organic
+                  {" "}
+                  {curProduct.productName}{" "}
                 </li>
               </ol>
             </nav>
@@ -114,15 +133,17 @@ function SingleProduct() {
                         zoomType="hover"
                         zoomScale={0.8}
                         // src="src/assets/product1.jpg"
-                        src={curProduct.catImg}
+                        // src={curProduct.catImg}
+                        src={showImage}
                         width={1000}
                         height={1000}
                       />
                     </div>
+
                     <div className="img-slider bg-re-400 " onClick={helo}>
                       <Slider {...settings}>
-                        {productImages.map((imageUrl, index) => {
-                          return (
+                        {curProduct.productImages &&
+                          curProduct.productImages.map((imageUrl, index) => (
                             <img
                               src={imageUrl}
                               key={index}
@@ -132,10 +153,31 @@ function SingleProduct() {
                                 margin: "0px",
                               }}
                             />
-                          );
-                        })}
+                          ))}
                       </Slider>
                     </div>
+
+                    {/* <div className="img-slider bg-re-400 " onClick={helo}>
+                      <Slider {...settings}>
+                        {curProduct.productImages.map((val) => {
+                          <img src={val} alt="" />;
+                        })}
+                         {curProduct.productImages.map((imageUrl, index) => { 
+                           console.log(imageUrl); 
+                           return (
+                             <img
+                               src={imageUrl}
+                               key={index}
+                               style={{
+                                 width: "100px",
+                                 height: "100px",
+                                 margin: "0px",
+                               }}
+                             />
+                           );
+                        })} 
+                      </Slider>
+                    </div>*/}
                   </div>
 
                   <div className="col-8 px-12">
@@ -149,7 +191,7 @@ function SingleProduct() {
                           precision={0.5}
                           style={{ fontSize: "1rem" }}
                         />
-                        <span className="text-[#ccc]">(32 reviews)</span>
+                        <span className="text-[#ccc]">(32 reviews){first}</span>
                       </div>
                       <div className="product-price flex items-center  gap-2">
                         <div className="sale-price text-[48px] font-semibold text-[#3BB77E]">

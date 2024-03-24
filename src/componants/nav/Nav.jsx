@@ -7,9 +7,15 @@ import { FaHeadset } from "react-icons/fa";
 import MegaMenu from "../mega-menu/MegeMenu";
 import { categoryData } from "../categoryData";
 import { useState, useEffect, useRef } from "react";
+import { useProductContext } from "../../context/productContext";
+import Dropdown from "../SelectDropdown/Dropdown";
 
 function Nav() {
   const [categoryDropdown, setCategoryDropdown] = useState(false);
+  const [catDropdownIndex, setCatDropdownIndex] = useState(null);
+
+  const { Products } = useProductContext();
+
   const navRef = useRef();
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -75,17 +81,48 @@ function Nav() {
                 home
               </NavLink>
             </Button>
-            <Button>
-              <NavLink
-                exact="true"
-                to="/about"
-                className={({ isActive }) =>
-                  isActive ? "text-[#3BB77D]" : "text-black"
-                }
-              >
-                About
-              </NavLink>
-            </Button>
+            <ul className="flex ">
+              {Products.map((val, index) => {
+                return (
+                  <>
+                    <li className="">
+                      <Button
+                        key={index}
+                        onMouseEnter={() => setCatDropdownIndex(index)}
+                        onMouseLeave={() => setCatDropdownIndex(null)}
+                      >
+                        <NavLink exact="true" to="/about" className="link">
+                          {val.cat_name}
+                        </NavLink>
+                      </Button>
+                     {(catDropdownIndex === index || catDropdownIndex === 'cat-dropdown-' + index) && (
+                          <div
+                            className="cat-dropdown shadow-inner"
+                            onMouseEnter={() =>
+                              setCatDropdownIndex("cat-dropdown-" + index)
+                            }
+                            onMouseLeave={() => setCatDropdownIndex(null)}
+                          >
+                            {val.items.map((val, index) => {
+                              return (
+                                <>
+                                  <ul key={index}>
+                                    <li className="text-left ">
+                                      <Button>
+                                        <NavLink>{val.cat_name}</NavLink>
+                                      </Button>
+                                    </li>
+                                  </ul>
+                                </>
+                              );
+                            })}
+                          </div>
+                        ))}
+                    </li>
+                  </>
+                );
+              })}
+            </ul>
             <Button>
               <NavLink
                 exact="true"
@@ -108,7 +145,7 @@ function Nav() {
               </NavLink>
             </Button>
             <MegaMenu />
-            <Button>
+            {/* <Button>
               <NavLink
                 to="/blog"
                 className={({ isActive }) =>
@@ -117,8 +154,8 @@ function Nav() {
               >
                 blog
               </NavLink>
-            </Button>
-            <Button>
+            </Button> */}
+            {/* <Button>
               <NavLink
                 to="/pages"
                 className={({ isActive }) =>
@@ -127,7 +164,7 @@ function Nav() {
               >
                 pages
               </NavLink>
-            </Button>
+            </Button> */}
             <Button>
               <NavLink
                 to="/contact"

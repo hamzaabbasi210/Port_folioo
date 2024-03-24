@@ -1,13 +1,19 @@
 import { useState } from "react";
 import { IoMdArrowDropright, IoMdArrowDropdown } from "react-icons/io";
 import { NavLink } from "react-bootstrap";
+import { useProductContext } from "../../context/productContext";
 
 function MegaMenu() {
   const [megaMenu, setMegaMenu] = useState(false);
+  const { Products } = useProductContext();
 
   return (
     <>
-      <button className="mega-menu " onClick={() => setMegaMenu(!megaMenu)}>
+      <button
+        className="mega-menu "
+        onMouseEnter={() => setMegaMenu(!megaMenu)}
+        onMouseLeave={() => setMegaMenu(null)}
+      >
         <NavLink className="flex items-center justify-center gap-2 text-sm">
           mega menu
           {megaMenu ? <IoMdArrowDropdown /> : <IoMdArrowDropright />}
@@ -17,7 +23,19 @@ function MegaMenu() {
         <div className="mega-menu-btn static z-10">
           <div className="mega-menu-content w-full left-0 top-[100%] h-max absolute py-4 shadow-md bg-[#ffffff]">
             <div className="row">
-              <div className="col-3 ">
+              {Products.map((val) => {
+                return (
+                  <div className="col-3 ">
+                    <h1>{val.cat_name}</h1>
+                    <ul>
+                      {val.items.map((val) => {
+                        return <li>{val.cat_name}</li>;
+                      })}
+                    </ul>
+                  </div>
+                );
+              })}
+              {/* <div className="col-3 ">
                 <h1>Fruit & Vegetables</h1>
                 <ul>
                   <li>Cuts & Sprouts</li>
@@ -49,7 +67,7 @@ function MegaMenu() {
                   <li>Wild Caught Fillets</li>
                   <li>Crab and Shellfish</li>
                 </ul>
-              </div>
+              </div> */}
               <div className="col-3 h-[30]  bg-red-40 bordr flex justify-end mr-auto">
                 <div className="mega-menu-img rounded-md p-0">
                   <div className="mega-menu-img-content mt-4 ml-8 ">

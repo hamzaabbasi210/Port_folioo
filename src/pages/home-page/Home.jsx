@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect } from "react";
 import HomeSlider from "./HomeSlider";
 import CatSlider from "../../componants/catSlider/CatSlider";
 import Banner from "../../componants/banner/Banner";
@@ -14,7 +14,7 @@ import FeatureProduct from "../../componants/featureProducts/FeatureProduct";
 import Product2 from "../../componants/product2/Product2";
 
 function Home() {
-  const { topSelling, dailyBestDeals, trending, recentlyAdded, topRated } =
+  const { topSelling, dailyBestDeals, trending, recentlyAdded, topRated, Products } =
     useProductContext();
   var settings = {
     dots: false,
@@ -31,7 +31,10 @@ function Home() {
 
     // fade: true,
   };
-
+  useEffect(() => {
+  window.scrollTo(0,0)  
+  }, [])
+  
   return (
     <>
       <HomeSlider />
@@ -45,27 +48,37 @@ function Home() {
             <div className="hd">Popular products</div>
             <div className="filter-tabs ml-auto">
               <ul className="flex gap-">
-                <li className="active">
-                  <NavLink>all</NavLink>
-                </li>
-                <li>
-                  <NavLink>Milks & Dairies</NavLink>
-                </li>
-                <li>
-                  <NavLink>Coffes & Teas</NavLink>
-                </li>
-                <li>
-                  <NavLink>Pet Foods</NavLink>
-                </li>
-                <li>
-                  <NavLink>Meats</NavLink>
-                </li>
-                <li>
-                  <NavLink>Vegetables</NavLink>
-                </li>
-                <li>
-                  <NavLink>Fruits</NavLink>
-                </li>
+              {
+                  Products.map((val)=>{
+                    return val.items.map((val_)=>{
+                      return<li className="text-sm font-thin">
+                      <NavLink>{val_.cat_name}</NavLink>
+                    </li>
+                    })
+                  })
+                }
+
+                  {/* <li className="active">
+                    <NavLink>all</NavLink>
+                  </li>
+                  <li>
+                    <NavLink>Milks & Dairies</NavLink>
+                  </li>
+                  <li>
+                    <NavLink>Coffes & Teas</NavLink>
+                  </li>
+                  <li>
+                    <NavLink>Pet Foods</NavLink>
+                  </li>
+                  <li>
+                    <NavLink>Meats</NavLink>
+                  </li>
+                  <li>
+                    <NavLink>Vegetables</NavLink>
+                  </li>
+                  <li>
+                    <NavLink>Fruits</NavLink>
+                  </li> */}
               </ul>
             </div>
           </div>

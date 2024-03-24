@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { IoMdArrowDropright, IoMdArrowDropdown } from "react-icons/io";
-import { NavLink } from "react-bootstrap";
 import { useProductContext } from "../../context/productContext";
+import { NavLink } from "react-router-dom";
 
 function MegaMenu() {
   const [megaMenu, setMegaMenu] = useState(false);
   const { Products } = useProductContext();
 
   return (
-    <>
+    <><div className="z-10" onMouseEnter={() => setMegaMenu(!megaMenu)}
+    onMouseLeave={() => setMegaMenu(null)}>
       <button
         className="mega-menu "
-        onMouseEnter={() => setMegaMenu(!megaMenu)}
-        onMouseLeave={() => setMegaMenu(null)}
+        
       >
         <NavLink className="flex items-center justify-center gap-2 text-sm">
           mega menu
@@ -26,48 +26,16 @@ function MegaMenu() {
               {Products.map((val) => {
                 return (
                   <div className="col-3 ">
-                    <h1>{val.cat_name}</h1>
+                    <h1><NavLink to={`/cat/${val.cat_name.toLowerCase()}`}>{val.cat_name}</NavLink></h1>
                     <ul>
-                      {val.items.map((val) => {
-                        return <li>{val.cat_name}</li>;
+                      {val.items.map((val_) => {
+                        return <li className="text-sm"><NavLink to={`/cat/${val.cat_name}/${val_.cat_name.toLowerCase().replace(/\s/g,'-')}`}>{val_.cat_name}</NavLink></li>;
                       })}
                     </ul>
                   </div>
                 );
               })}
-              {/* <div className="col-3 ">
-                <h1>Fruit & Vegetables</h1>
-                <ul>
-                  <li>Cuts & Sprouts</li>
-                  <li>Meat & Poultry</li>
-                  <li>Fresh Vegetables</li>
-                  <li>Herbs & Seasonings</li>
-                  <li>Exotic Fruits & Veggies</li>
-                  <li>Packaged Produce</li>
-                </ul>
-              </div>
-              <div className="col-3">
-                <h1>Breakfast & Dairy</h1>
-                <ul>
-                  <li>Milk & Flavoured Milk</li>
-                  <li>Butter and Margarine</li>
-                  <li>Eggs Substitutes</li>
-                  <li>Marmalades</li>
-                  <li>Sour Cream</li>
-                  <li>Cheese</li>
-                </ul>
-              </div>
-              <div className="col-3">
-                <h1>Meat & Seafood</h1>
-                <ul>
-                  <li>Breakfast Sausage</li>
-                  <li>Dinner Sausage</li>
-                  <li>Chicken</li>
-                  <li>Sliced Deli Meat</li>
-                  <li>Wild Caught Fillets</li>
-                  <li>Crab and Shellfish</li>
-                </ul>
-              </div> */}
+            
               <div className="col-3 h-[30]  bg-red-40 bordr flex justify-end mr-auto">
                 <div className="mega-menu-img rounded-md p-0">
                   <div className="mega-menu-img-content mt-4 ml-8 ">
@@ -88,6 +56,7 @@ function MegaMenu() {
           </div>
         </div>
       )}
+      </div>
     </>
   );
 }

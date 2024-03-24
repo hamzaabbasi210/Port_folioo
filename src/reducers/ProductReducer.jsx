@@ -1,3 +1,5 @@
+
+
 const productReducer = (state, action) => {
   switch (action.type) {
     case "SET_LOADING": {
@@ -106,6 +108,15 @@ const productReducer = (state, action) => {
         Products: action.payload,
         dailyBestDeals: dailyBestDeals,
       };
+    }
+    case 'DALS_AND_PULSES':{
+      const dalsAndPulses = action.payload.map((val)=>{
+        return val.items.filter((val)=>{
+          return (val.cat_name === "dals and pulses")
+
+        })
+      })
+      console.log(dalsAndPulses)
     }
     case "API_ERROR": {
       return {

@@ -1,6 +1,6 @@
 .filter-tabs ul li {
-  font-weight: 700;
-  padding-right: 2rem;
+  font-weight: 500;
+  padding-right: 1rem;
 }
 .filter-tabs ul li.active {
   color: #3bb77e;

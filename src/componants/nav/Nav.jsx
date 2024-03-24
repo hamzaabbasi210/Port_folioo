@@ -85,31 +85,28 @@ function Nav() {
               {Products.map((val, index) => {
                 return (
                   <>
-                    <li className="">
+                    <li className="" onMouseEnter={() => setCatDropdownIndex(index)}
+                        onMouseLeave={() => setCatDropdownIndex(null)}>
                       <Button
                         key={index}
-                        onMouseEnter={() => setCatDropdownIndex(index)}
-                        onMouseLeave={() => setCatDropdownIndex(null)}
+                        
                       >
-                        <NavLink exact="true" to="/about" className="link">
+                        <NavLink exact="true" to={`/cat/${val.cat_name.toLowerCase()}`} className="link">
                           {val.cat_name}
                         </NavLink>
                       </Button>
-                     {(catDropdownIndex === index || catDropdownIndex === 'cat-dropdown-' + index) && (
+                     {catDropdownIndex === index && (
                           <div
                             className="cat-dropdown shadow-inner"
-                            onMouseEnter={() =>
-                              setCatDropdownIndex("cat-dropdown-" + index)
-                            }
-                            onMouseLeave={() => setCatDropdownIndex(null)}
+                           
                           >
-                            {val.items.map((val, index) => {
+                            {val.items.map((val_, index) => {
                               return (
                                 <>
-                                  <ul key={index}>
-                                    <li className="text-left ">
-                                      <Button>
-                                        <NavLink>{val.cat_name}</NavLink>
+                                  <ul key={index} >
+                                    <li className="cat-subcat-dropdown-list">
+                                      <Button style={{fontWeight:'lighter',backgroundColor:'none'}}>
+                                        <NavLink to={`/cat/${val.cat_name}/${val_.cat_name.toLowerCase().replace(/\s/g,'-')}`}>{val_.cat_name}</NavLink>
                                       </Button>
                                     </li>
                                   </ul>
@@ -117,7 +114,7 @@ function Nav() {
                               );
                             })}
                           </div>
-                        ))}
+                        )}
                     </li>
                   </>
                 );

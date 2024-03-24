@@ -18,8 +18,9 @@ const initialState = {
   isSingleError: false,
   isSingleLoading: false,
   singleProduct: [],
+  dalsAndPulses:[]
 };
-
+// console.log(dalsAndPulses)
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { id } = useParams;
@@ -36,6 +37,7 @@ const AppProvider = ({ children }) => {
       dispatch({ type: "SET_RECENTLYADDED_API_DATA", payload: products });
       dispatch({ type: "SET_TOPRATED_API_DATA", payload: products });
       dispatch({ type: "SET_DAILYBESTDEALS_API_DATA", payload: products });
+      dispatch({type:"DALS_AND_PULSES", payload: products})
     } catch (error) {
       dispatch({ type: "API_ERROR" });
     }

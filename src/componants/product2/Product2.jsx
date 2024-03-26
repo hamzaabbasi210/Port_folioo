@@ -50,9 +50,7 @@ function Product2(props) {
                   discount <strong>{props.value.discount}%</strong>
                 </div>
                 <h1 className="pb- text-[22px]">
-                  {" "}
                   <strong>
-                    {" "}
                     {props.value.productName.length > 18
                       ? props.value.productName.substr(0, 14) + "...."
                       : props.value.productName}

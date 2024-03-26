@@ -18,7 +18,15 @@ const initialState = {
   isSingleError: false,
   isSingleLoading: false,
   singleProduct: [],
-  dalsAndPulses:[]
+  dalsAndPulses: [],
+  gheeAndOils: [],
+  attaAndFLoors: [],
+  masalasAndSpices: [],
+  riceAndRiceProducts: [],
+  mobilesAndTablets: [],
+  TVAndSpeaker: [],
+  menWesternWear: [],
+  woMenWesternWear: [],
 };
 // console.log(dalsAndPulses)
 const AppProvider = ({ children }) => {
@@ -37,14 +45,21 @@ const AppProvider = ({ children }) => {
       dispatch({ type: "SET_RECENTLYADDED_API_DATA", payload: products });
       dispatch({ type: "SET_TOPRATED_API_DATA", payload: products });
       dispatch({ type: "SET_DAILYBESTDEALS_API_DATA", payload: products });
-      dispatch({type:"DALS_AND_PULSES", payload: products})
+      dispatch({ type: "DALS_AND_PULSES", payload: products });
+      dispatch({ type: "GHEE_AND_OILS", payload: products });
+      dispatch({ type: "ATTA_AND_FLOOR", payload: products });
+      dispatch({ type: "MASALAS_AND_SPICES", payload: products });
+      dispatch({ type: "RICE_AND_RICE_PRODUCTS", payload: products });
+      dispatch({ type: "MOBILE_AND_TABLETS", payload: products });
+      dispatch({ type: "TV_AND_SPEAKER", payload: products });
+      dispatch({ type: "MEN_WESTERB_WEAR", payload: products });
+      dispatch({ type: "WOMEN_WESTERB_WEAR", payload: products });
     } catch (error) {
       dispatch({ type: "API_ERROR" });
     }
   };
-  // console.log(getProducts);
-  // my 2nd api call for single product
 
+  // my 2nd api call for single product
   const getSingleProduct = async (url) => {
     dispatch({ type: "SET_SINGLE_LOADING" });
     try {
@@ -56,19 +71,6 @@ const AppProvider = ({ children }) => {
       dispatch({ type: "SET_SINGLE_ERROR" });
     }
   };
-
-  // const getSingleProduct = async (url) => {
-  //   dispatch({ type: "SET_SINGLE_LOADING" });
-  //   try {
-  //     const res = await axios.get(url);
-  //     const singleProduct = await res.data;
-  //     // console.log(singleProduct);
-  //     dispatch({ type: "SET_SINGLE_PRODUCT_DATA", payload: singleProduct });
-  //   } catch (error) {
-  //     dispatch({ type: "SINGLE_API_ERROR" });
-  //   }
-  // console.log(getSingleProduct);
-  // };
 
   useEffect(() => {
     getSingleProduct(Api);

@@ -21,8 +21,9 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/cat/:id" element={<ShopListing single={true} />} />
+        <Route path="/cat/:id/:id" element={<ShopListing single={false} />} />
         <Route path="/listing" element={<ShopListing />} />
-        <Route path="/cat/:id/:id" element={<ShopListing />} />
         <Route path="/about" element={<About />} />
         <Route path="/singleproduct/:id" element={<SingleProduct />} />
         <Route path="pages" element={<Pagess />} />

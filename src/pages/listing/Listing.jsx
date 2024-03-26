@@ -8,10 +8,41 @@ import Product2 from "../../componants/product2/Product2";
 import { useProductContext } from "../../context/productContext";
 import { useParams } from "react-router";
 
-function ShopListing() {
+function ShopListing(props) {
   const { Products } = useProductContext();
   const [priceDropdown, setPriceDropdown] = useState(false);
   const [categoryDropdown, setCategoryDropdown] = useState(false);
+  const [catProductsData, setCatProductsData] = useState([]);
+  const { id } = useParams();
+
+  var itemArr = [];
+  useEffect(() => {
+    Products.length !== 0 &&
+      Products.map((val) => {
+        if (props.single === true) {
+          if (val.cat_name.toLowerCase() === id.toLowerCase()) {
+            val.items.length !== 0 &&
+              val.items.map((val) => {
+                val.products.length !== 0 &&
+                  val.products.map((val) => {
+                    itemArr.push(val);
+                  });
+              });
+          }
+        } else {
+          val.items.map((val) => {
+            val.products.map((val) => {
+              itemArr.push(val);
+            });
+          });
+        }
+      });
+    const list2 = itemArr.filter(
+      (item, index) => itemArr.indexOf(item) === index
+    );
+    setCatProductsData(list2);
+  }, [id]);
+  console.log(catProductsData);
 
   return (
     <>
@@ -20,7 +51,7 @@ function ShopListing() {
           <div className="top-heading">
             <h1 className="text-5xl font-bold">Snack</h1>
             <ul>
-              <li>home</li>
+              <li>{catProductsData.brand}</li>
               <li>shop</li>
               <li>snack</li>
             </ul>
@@ -86,17 +117,25 @@ function ShopListing() {
                   </div>
                 </div>
                 <div className="product-box mt-6">
-                  {Products.map((val) => {
+                  {catProductsData.map((val) => {
+                    return (
+                      <div className="feature-product2  mr-6 ">
+                        <Product2 value={val} />
+                      </div>
+                    );
+                  })}
+
+                  {/* {catProductsData.map((val) => {
                     return val.items.map((val) => {
                       return val.products.map((val) => {
                         return (
                           <div key={val.id} className="feature-product2  mr-6 ">
-                            <Product2 value={val} />;
+                            <Product2 value={catProductsData} />;
                           </div>
                         );
                       });
                     });
-                  })}
+                  })} */}
                 </div>
               </div>
             </div>

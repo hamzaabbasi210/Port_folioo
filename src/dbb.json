@@ -8,6 +8,7 @@
       "items": [
         {
   "cat_name": "dals and pulses",
+  "id":1,
   "products": [
     {
       "productName": "Good Life Whole Moong 500 g",
@@ -174,6 +175,7 @@
 
 {
   "cat_name": "Ghee & Oils",
+  "id":2,
   "products": [
     {
       "productName": "Gowardhan Pure Cow Ghee 1 L (Jar)",
@@ -289,6 +291,7 @@
 },
 {
   "cat_name": "Atta & Flours",
+  "id":3,
   "products": [
     {
       "productName": "Aashirvaad Superior MP Whole Wheat Atta 1 kg",
@@ -425,6 +428,7 @@
 },
 {
   "cat_name": "masalas spices",
+  "id":4,
   "products": [
     {
       "productName": "Good Life Jeera 100 g",
@@ -536,6 +540,7 @@
 },
 {
   "cat_name": "Rice & Rice Products",
+  "id":5,
   "products": [
     {
       "productName": "Tata Sampann White Poha 500 g",
@@ -632,6 +637,7 @@
   "items": [
     {
       "cat_name": "Mobiles & Tablets",
+      "id":6,
       "products": [
         {
           "productName": "OnePlus Nord CE 2 Lite 5G,128 GB,6 GB RAM,Blue Tide,Mobile Phone",
@@ -742,6 +748,7 @@
     },
     {
       "cat_name": "TV & Speaker",
+      "id":7,
       "products": [
         {
           "productName": "Realme 80 cm (32 inch) HD Ready LED Smart Android TV 2023 Edition with Android 11 RMV2205",
@@ -838,6 +845,7 @@
   "items": [
     {
       "cat_name": "Men Western Wear",
+      "id":8,
       "products": [
         {
           "productName": "Bomber Jacket with Zipper Pockets",
@@ -947,6 +955,7 @@
     },
     {
       "cat_name": "Women Western Wear",
+      "id":9,
       "products": [
         {
           "productName": "Rudraaksha Stylish Dress For women",

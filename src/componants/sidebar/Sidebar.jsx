@@ -7,12 +7,14 @@ import "./Sidebar.css";
 import { Button } from "@mui/material";
 import { FiFilter } from "react-icons/fi";
 import banner from "../../assets/banner4.jpg";
+import { useProductContext } from "../../context/productContext";
 function Sidebar() {
   const [value, setValue] = React.useState([20, 307]);
+  const { Products } = useProductContext();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  // console.log(Products.cat_name);
   function valuetext(value) {
     return `${value}°C`;
   }
@@ -25,17 +27,17 @@ function Sidebar() {
           <div className="box mb-8 ">
             <div className="cards shadow-xl rounded-lg max-h-[29rem] overflow-hidden px-4 mb-4 ">
               <div className="hd border-b-2 py-4">category</div>
-              {categoryData.map((val, index) => {
+              {Products.map((val, index) => {
                 return (
                   <div
                     key={val.id}
                     className="cat-list flex items-center justify-between mt-4 mb-2 py-2 px-2 border rounded-md"
                   >
                     <div className="img">
-                      <img src={val.img} alt="" className="w-7" />
+                      <img src={val.image} alt="" className="w-7" />
                     </div>
-                    <div className="title">{val.title}</div>
-                    <div className="qty">{val.qty}</div>
+                    <div className="title">{val.cat_name}</div>
+                    <div className="qty">7</div>
                   </div>
                 );
               })}

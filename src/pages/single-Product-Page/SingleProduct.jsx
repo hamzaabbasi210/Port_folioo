@@ -17,25 +17,21 @@ const Api = "http://localhost:3000/productData";
 function SingleProduct() {
   const { getSingleProduct, singleProduct } = useProductContext();
   const { id } = useParams();
-  // console.log(id);
 
   const [curProduct, setCurProduct] = useState({});
   const [inpVal, setInpVal] = useState(0);
   const [first, setfirst] = useState(curProduct.brand);
   const [showImage, setShowImage] = useState([]);
   const [showInfo, setShowInfo] = useState(0);
-  // console.log(curProduct.id);
-  // console.log(singleProduct);
 
   singleProduct.map((val) => {
     return val.items.map((val) => {
-      return val.products.map((val) => {
-        // setShowImage(val.catImg);
-      });
+      return val.products.map((val) => {});
     });
   });
 
   useEffect(() => {
+    alert();
     window.scrollTo(0, 0);
     singleProduct.map((val) => {
       return val.items.map((val) => {

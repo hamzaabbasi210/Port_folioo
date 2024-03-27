@@ -15,6 +15,12 @@ function ShopListing(props) {
   const [catProductsData, setCatProductsData] = useState([]);
   const { id } = useParams();
 
+  // Products.map((val) => {
+  //   val.items.map((val) => {
+  //     console.log(val);
+  //   });
+  // });
+
   var itemArr = [];
   useEffect(() => {
     Products.length !== 0 &&
@@ -29,6 +35,36 @@ function ShopListing(props) {
                   });
               });
           }
+        }
+        // else {
+        //   val.items.length !== 0 &&
+        //     val.items.map((item_, index_) => {
+        //       // console.log(item_.cat_name.replace(/[^A-Za-z]/g,"-").toLowerCase())
+        //       if (
+        //         item_.cat_name.split(" ").join("-").toLowerCase() ==
+        //         id.split(" ").join("-").toLowerCase()
+        //       ) {
+        //         item_.products.map((item__, index__) => {
+        //           itemArr.push({
+        //             ...item__,
+        //             // parentCatName: item.cat_name,
+        //             // subCatName: item_.cat_name,
+        //           });
+        //         });
+        //       }
+        //     });
+        // }
+        else if (props.single === false) {
+          val.items.map((val) => {
+            if (
+              val.cat_name.split(" ").join("-").toLowerCase() ===
+              id.split(" ").join("-").toLowerCase()
+            ) {
+              val.products.map((val) => {
+                itemArr.push({ ...val });
+              });
+            }
+          });
         } else {
           val.items.map((val) => {
             val.products.map((val) => {
@@ -42,7 +78,7 @@ function ShopListing(props) {
     );
     setCatProductsData(list2);
   }, [id]);
-  console.log(catProductsData);
+  // console.log(catProductsData);
 
   return (
     <>
@@ -64,7 +100,10 @@ function ShopListing(props) {
               <div className="col-9 mt-4">
                 <div className="top-strip flex justify-between">
                   <div className="result">
-                    We found <span className="text-success font-bold">29</span>{" "}
+                    We found{" "}
+                    <span className="text-success font-bold">
+                      {catProductsData.length}
+                    </span>{" "}
                     items for you!
                   </div>
                   <div className="filter-btn flex ">

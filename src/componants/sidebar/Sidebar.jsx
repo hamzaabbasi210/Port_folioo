@@ -8,6 +8,7 @@ import { Button } from "@mui/material";
 import { FiFilter } from "react-icons/fi";
 import banner from "../../assets/banner4.jpg";
 import { useProductContext } from "../../context/productContext";
+import { NavLink } from "react-router-dom";
 function Sidebar() {
   const [value, setValue] = React.useState([20, 307]);
   const { Products } = useProductContext();
@@ -36,8 +37,13 @@ function Sidebar() {
                     <div className="img">
                       <img src={val.image} alt="" className="w-7" />
                     </div>
-                    <div className="title">{val.cat_name}</div>
-                    <div className="qty">7</div>
+                    <NavLink to={`/cat/${val.cat_name.toLowerCase()}`}>
+                      <div className="title">{val.cat_name}</div>
+                    </NavLink>
+
+                    <div className="qty bg-[#3bb77d9f] w-4 h-4 rounded-full flex items-center justify-center p-[10px] text-xs">
+                      {val.items.length}
+                    </div>
                   </div>
                 );
               })}

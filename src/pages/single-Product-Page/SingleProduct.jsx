@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import compare from "../../assets/icon-compare.svg";
 import heart from "../../assets/icon-heart.svg";
+import ri from "../../assets/author-2.png";
 import "./SingleProduct.css";
 import { FaAngleUp } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
@@ -12,6 +13,7 @@ import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
 import Slider from "react-slick";
 import { useProductContext } from "../../context/productContext";
+import axios from "axios";
 
 const Api = "http://localhost:3000/productData";
 function SingleProduct() {
@@ -23,6 +25,13 @@ function SingleProduct() {
   const [first, setfirst] = useState(curProduct.brand);
   const [showImage, setShowImage] = useState([]);
   const [showInfo, setShowInfo] = useState(0);
+  const [rating, setRating] = useState(0, 0);
+  const [reviewArr, setReviewArr] = useState([]);
+  const [reviewField, setReviewField] = useState({
+    review: "",
+    userName: "",
+    rating: 0.0,
+  });
 
   singleProduct.map((val) => {
     return val.items.map((val) => {
@@ -31,25 +40,18 @@ function SingleProduct() {
   });
 
   useEffect(() => {
-    alert();
     window.scrollTo(0, 0);
     singleProduct.map((val) => {
       return val.items.map((val) => {
         return val.products.map((val) => {
           if (parseInt(val.id) === parseInt(id)) {
             setCurProduct(val);
+            setShowImage(val.productImages[0]);
           }
         });
       });
     });
   }, [id]);
-
-  useEffect(() => {
-    // getSingleProduct(`${Api}?id=${id}`);
-    // singleProduct.map((val) => {
-    //   console.log(val);
-    // });
-  }, []);
 
   const increment = () => {
     if (inpVal < 10) {
@@ -66,15 +68,6 @@ function SingleProduct() {
     }
   };
 
-  const productImages = [
-    "https://www.jiomart.com/images/product/original/491187309/good-life-whole-moong-500-g-product-images-o491187309-p491187309-0-202308311426.jpg",
-    "https://www.jiomart.com/images/product/original/491187309/good-life-whole-moong-500-g-product-images-o491187309-p491187309-1-202308311426.jpg",
-    "https://www.jiomart.com/images/product/original/491187309/good-life-whole-moong-500-g-product-images-o491187309-p491187309-2-202308311426.jpg",
-    "https://www.jiomart.com/images/product/original/491187309/good-life-whole-moong-500-g-product-images-o491187309-p491187309-3-202308311426.jpg",
-    "https://www.jiomart.com/images/product/original/491187309/good-life-whole-moong-500-g-product-images-o491187309-p491187309-4-202308311426.jpg",
-    "https://www.jiomart.com/images/product/original/491187309/good-life-whole-moong-500-g-legal-images-o491187309-p491187309-5-202308311427.jpg",
-  ];
-
   var settings = {
     dots: false,
     infinite: true,
@@ -85,10 +78,7 @@ function SingleProduct() {
     autoplay: true,
     autoplaySpeed: 1500,
   };
-  // const helo = (det) => {
-  //   console.log(det.target.src);
-  //   setShowImage(det.target.src);
-  // };
+
   const helo = (det) => {
     if (det && det.target && det.target.src) {
       console.log(det.target.src);
@@ -97,8 +87,49 @@ function SingleProduct() {
       console.error("Invalid event or target in helo function:", det);
     }
   };
-  // console.log(curProduct.productImages);
+  const submitReview = async (e) => {
+    e.preventDefault();
 
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/productReview",
+        reviewField
+      );
+      // console.log(response.data);
+      setReviewArr(response.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+    showReview();
+  };
+  useEffect(() => {
+    showReview();
+  });
+  const showReview = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/productReview");
+
+      if (Array.isArray(response.data)) {
+        setReviewArr(response.data);
+      } else if (typeof response.data === "object") {
+        const dataArray = Object.values(response.data);
+        setReviewArr(dataArray);
+        // console.log(reviewArr);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  console.log(typeof reviewArr);
+  const handleOnChange = (name, value) => {
+    if (name === "rating") {
+      setRating(value);
+    }
+    setReviewField(() => ({
+      ...reviewField,
+      [name]: value,
+    }));
+  };
   return (
     <>
       <div className="single-product-container  mb-56">
@@ -275,7 +306,9 @@ function SingleProduct() {
                       <div className="vendor" onClick={() => setShowInfo(2)}>
                         <Button>vendor</Button>
                       </div>
-                      <Button>reviews</Button>
+                      <div className="vendor" onClick={() => setShowInfo(3)}>
+                        <Button>reviews</Button>
+                      </div>
                     </div>
                     {showInfo === 0 && (
                       <div className="discription-tab mt-4">
@@ -547,11 +580,86 @@ function SingleProduct() {
                         </div>
                       </div>
                     )}
+                    {showInfo === 3 && (
+                      <>
+                        <div className="review-tab">
+                          <h2 className="font-bold">
+                            Customer questions & answers
+                          </h2>
+                          {reviewArr.map((val) => {
+                            // console.log(val);
+
+                            <div className="review-card w-[60%] shadow-xl mt-4 border-t-4 flex py-4 items-center px-4 gap-8">
+                              <div className="cus-img text-center">
+                                <img src={ri} alt="" className="w-80" />
+                                <h1 className="mt-4 text-[#3BB77E] font-bold">
+                                  {reviewField.userName}
+                                </h1>
+                              </div>
+                              <div className="rv">
+                                <div className="top flex justify-between">
+                                  <div className="date text-[#3BB77E]">
+                                    December 4, 2022 at 3:12 pm
+                                  </div>
+                                  <div className="ratting">
+                                    <Rating value={reviewField.rating} />
+                                  </div>
+                                </div>
+                                <p className="mt-4">{reviewField.review}</p>
+                              </div>
+                            </div>;
+                          })}
+                        </div>
+                        <div className="form-section w-[60%] shadow-xl mt-8">
+                          <h2 className="font-bold">add a review</h2>
+                          <form className="p-4" onSubmit={submitReview}>
+                            <textarea
+                              name="review"
+                              id=""
+                              cols="30"
+                              rows="10"
+                              className="w-full outline-none border"
+                              placeholder="write a review"
+                              value={reviewField.review}
+                              onChange={(e) =>
+                                handleOnChange(e.target.name, e.target.value)
+                              }
+                            ></textarea>
+                            <div className="flex justify-between">
+                              <input
+                                type="text"
+                                name="userName"
+                                className="border w-[50%] py-2 px-2 outline-none my-4"
+                                placeholder="enter your name"
+                                value={reviewField.userName}
+                                onChange={(e) =>
+                                  handleOnChange(e.target.name, e.target.value)
+                                }
+                              />
+                              <Rating
+                                name="rating"
+                                precision={0.5}
+                                value={rating}
+                                onChange={(e) =>
+                                  handleOnChange(e.target.name, e.target.value)
+                                }
+                              />
+                            </div>
+                            <button
+                              type="submit"
+                              className=" bg-[#3BB77E] px-4 py-2 mt- text-white font-bold rounded-md"
+                            >
+                              submit review
+                            </button>
+                          </form>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
               <div className="col-3">
-                <Sidebar />
+                {/* <Sidebar filterByPrice={false} /> */}
               </div>
             </div>
           </div>

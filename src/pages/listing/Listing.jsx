@@ -7,6 +7,7 @@ import { Button } from "@mui/material";
 import Product2 from "../../componants/product2/Product2";
 import { useProductContext } from "../../context/productContext";
 import { useParams } from "react-router";
+import { NavLink } from "react-router-dom";
 
 function ShopListing(props) {
   const { Products } = useProductContext();
@@ -14,12 +15,6 @@ function ShopListing(props) {
   const [categoryDropdown, setCategoryDropdown] = useState(false);
   const [catProductsData, setCatProductsData] = useState([]);
   const { id } = useParams();
-
-  // Products.map((val) => {
-  //   val.items.map((val) => {
-  //     console.log(val);
-  //   });
-  // });
 
   var itemArr = [];
   useEffect(() => {
@@ -35,26 +30,7 @@ function ShopListing(props) {
                   });
               });
           }
-        }
-        // else {
-        //   val.items.length !== 0 &&
-        //     val.items.map((item_, index_) => {
-        //       // console.log(item_.cat_name.replace(/[^A-Za-z]/g,"-").toLowerCase())
-        //       if (
-        //         item_.cat_name.split(" ").join("-").toLowerCase() ==
-        //         id.split(" ").join("-").toLowerCase()
-        //       ) {
-        //         item_.products.map((item__, index__) => {
-        //           itemArr.push({
-        //             ...item__,
-        //             // parentCatName: item.cat_name,
-        //             // subCatName: item_.cat_name,
-        //           });
-        //         });
-        //       }
-        //     });
-        // }
-        else if (props.single === false) {
+        } else if (props.single === false) {
           val.items.map((val) => {
             if (
               val.cat_name.split(" ").join("-").toLowerCase() ===
@@ -78,24 +54,77 @@ function ShopListing(props) {
     );
     setCatProductsData(list2);
   }, [id]);
-  // console.log(catProductsData);
+
+  const filterByPrice = (minValue, maxValue) => {
+    Products.map((val) => {
+      if (val.cat_name.toLowerCase() === id.toLowerCase()) {
+        val.items.map((val) => {
+          val.products.map((val) => {
+            let price = parseInt(val.price.toString().replace(/,/g, ""));
+            console.log(price);
+            if (minValue <= price && maxValue >= price) {
+              itemArr.push(val);
+            }
+          });
+        });
+      } else {
+        val.items.length !== 0 &&
+          val.items.map((item_, index_) => {
+            if (
+              item_.cat_name.split(" ").join("-").toLowerCase() ==
+              id.split(" ").join("-").toLowerCase()
+            ) {
+              item_.products.map((product) => {
+                let price = parseInt(
+                  product.price.toString().replace(/,/g, "")
+                );
+                if (minValue <= price && maxValue >= price) {
+                  itemArr.push({
+                    ...product,
+                  });
+                }
+              });
+            }
+          });
+      }
+    });
+    const list2 = itemArr.filter(
+      (item, index) => itemArr.indexOf(item) === index
+    );
+    setCatProductsData(list2);
+  };
 
   return (
     <>
       <div className="listing-container my-12">
         <div className="container-fluid">
           <div className="top-heading">
-            <h1 className="text-5xl font-bold">Snack</h1>
+            <h1 className="text-5xl font-bold">
+              {sessionStorage.getItem("cat")}
+            </h1>
             <ul>
-              <li>{catProductsData.brand}</li>
-              <li>shop</li>
-              <li>snack</li>
+              <li>
+                <NavLink to="/" style={{ color: "#3BB77D" }}>
+                  home &nbsp;/{" "}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to={`/cat/${sessionStorage.getItem("cat")}`}
+                  style={{ color: "#3BB77D" }}
+                >
+                  {sessionStorage.getItem("cat")}&nbsp;&nbsp;/
+                </NavLink>
+              </li>
+              {props.single === false && (
+                <li style={{ color: "#3BB77D" }}>{id}</li>
+              )}
             </ul>
           </div>
           <div className="listing-content ">
             <div className="row">
               <div className="col-3 ">
-                <Sidebar />
+                <Sidebar filterByPrice={filterByPrice} range={true} />
               </div>
               <div className="col-9 mt-4">
                 <div className="top-strip flex justify-between">

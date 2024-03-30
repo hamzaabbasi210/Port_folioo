@@ -85,36 +85,62 @@ function Nav() {
               {Products.map((val, index) => {
                 return (
                   <>
-                    <li className="" onMouseEnter={() => setCatDropdownIndex(index)}
-                        onMouseLeave={() => setCatDropdownIndex(null)}>
-                      <Button
-                        key={index}
-                        
-                      >
-                        <NavLink exact="true" to={`/cat/${val.cat_name.toLowerCase()}`} className="link">
+                    <li
+                      className=""
+                      onMouseEnter={() => setCatDropdownIndex(index)}
+                      onMouseLeave={() => setCatDropdownIndex(null)}
+                    >
+                      <Button key={index}>
+                        <NavLink
+                          exact="true"
+                          to={`/cat/${val.cat_name.toLowerCase()}`}
+                          className="link"
+                          onClick={() =>
+                            sessionStorage.setItem(
+                              "cat",
+                              val.cat_name.toLowerCase()
+                            )
+                          }
+                        >
                           {val.cat_name}
                         </NavLink>
                       </Button>
-                     {catDropdownIndex === index && (
-                          <div
-                            className="cat-dropdown shadow-inner"
-                           
-                          >
-                            {val.items.map((val_, index) => {
-                              return (
-                                <>
-                                  <ul key={index} >
-                                    <li className="cat-subcat-dropdown-list">
-                                      <Button style={{fontWeight:'lighter',backgroundColor:'none'}}>
-                                        <NavLink to={`/cat/${val.cat_name}/${val_.cat_name.toLowerCase().replace(/\s/g,'-')}`}>{val_.cat_name}</NavLink>
-                                      </Button>
-                                    </li>
-                                  </ul>
-                                </>
-                              );
-                            })}
-                          </div>
-                        )}
+                      {catDropdownIndex === index && (
+                        <div className="cat-dropdown shadow-inner">
+                          {val.items.map((val_, index) => {
+                            return (
+                              <>
+                                <ul key={index}>
+                                  <li className="cat-subcat-dropdown-list">
+                                    <Button
+                                      style={{
+                                        fontWeight: "lighter",
+                                        backgroundColor: "none",
+                                      }}
+                                    >
+                                      <NavLink
+                                        to={`/cat/${
+                                          val.cat_name
+                                        }/${val_.cat_name
+                                          .toLowerCase()
+                                          .replace(/\s/g, "-")}`}
+                                        onClick={() =>
+                                          sessionStorage.setItem(
+                                            "cat",
+                                            val.cat_name.toLowerCase()
+                                          )
+                                        }
+                                      >
+                                        {val_.cat_name}
+                                      </NavLink>
+                                    </Button>
+                                  </li>
+                                </ul>
+                              </>
+                            );
+                          })}
+                        </div>
+                      )}
                     </li>
                   </>
                 );

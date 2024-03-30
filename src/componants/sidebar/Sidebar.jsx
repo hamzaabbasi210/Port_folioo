@@ -9,17 +9,26 @@ import { FiFilter } from "react-icons/fi";
 import banner from "../../assets/banner4.jpg";
 import { useProductContext } from "../../context/productContext";
 import { NavLink } from "react-router-dom";
-function Sidebar() {
-  const [value, setValue] = React.useState([20, 307]);
+import { useEffect } from "react";
+
+function Sidebar(props) {
+  const [value, setValue] = React.useState([20, 60000]);
   const { Products } = useProductContext();
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  // console.log(Products.cat_name);
   function valuetext(value) {
     return `${value}°C`;
   }
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+  const filterByPrices = (minValue, maxValue) => {
+    props.filterByPrice(minValue, maxValue);
+  };
+  useEffect(() => {
+    filterByPrices(value[0], value[1]);
+  }, [value]);
 
   return (
     <>
@@ -60,7 +69,7 @@ function Sidebar() {
                     getAriaValueText={valuetext}
                     color="success"
                     min={0}
-                    max={1000}
+                    max={60000}
                     step={1}
                   />
                 </Box>

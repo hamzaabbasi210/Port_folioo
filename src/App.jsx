@@ -11,7 +11,7 @@ import About from "./pages/about-page/About";
 import SingleProduct from "./pages/single-Product-Page/SingleProduct";
 import Contact from "./pages/contact us/Contact";
 import Blog from "./pages/blog/Blog";
-import Pagess from "./pages/Pagess/Pagess";
+import Cart from "./pages/cart/Cart";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -26,7 +26,7 @@ function App() {
         <Route path="/listing" element={<ShopListing />} />
         <Route path="/about" element={<About />} />
         <Route path="/singleproduct/:id" element={<SingleProduct />} />
-        <Route path="pages" element={<Pagess />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="blog" element={<Blog />} />
         <Route path="contact" element={<Contact />} />
       </Routes>

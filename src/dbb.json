@@ -1319,48 +1319,8 @@
       ]
     }
   ],
-  "productReview": [
-    {
-      "id": "1370",
-      "review": "this is reviddd",
-      "userName": "",
-      "rating": 0
-    },
-    {
-      "id": "629d",
-      "review": "hamza",
-      "userName": "",
-      "rating": 0
-    },
-    {
-      "id": "62a8",
-      "review": "hamza",
-      "userName": "",
-      "rating": 0
-    },
-    {
-      "id": "57fa",
-      "review": "hamza",
-      "userName": "",
-      "rating": 0
-    },
-    {
-      "id": "b766",
-      "review": "hamzaa",
-      "userName": "ali",
-      "rating": "3"
-    },
-    {
-      "id": "4d73",
-      "review": "",
-      "userName": "",
-      "rating": 0
-    },
-    {
-      "id": "39ac",
-      "review": "s",
-      "userName": "",
-      "rating": 0
-    }
+  "productReview": [],
+  "cartItems": [
+  
   ]
 }

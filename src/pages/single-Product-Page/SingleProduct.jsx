@@ -1,6 +1,6 @@
 import { Button, Rating } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import compare from "../../assets/icon-compare.svg";
 import heart from "../../assets/icon-heart.svg";
 import ri from "../../assets/author-2.png";
@@ -31,6 +31,8 @@ function SingleProduct() {
     review: "",
     userName: "",
     rating: 0.0,
+    productId: id,
+    date: "",
   });
 
   singleProduct.map((val) => {
@@ -38,6 +40,8 @@ function SingleProduct() {
       return val.products.map((val) => {});
     });
   });
+  const data = new Date();
+  console.log(data);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -95,32 +99,37 @@ function SingleProduct() {
         "http://localhost:3000/productReview",
         reviewField
       );
-      // console.log(response.data);
-      setReviewArr(response.data);
     } catch (error) {
       console.log(error.message);
     }
     showReview();
+    setReviewField(() => ({
+      review: "",
+      userName: "",
+      rating: 0.0,
+      productId: id,
+      date: new Date(),
+    }));
   };
   useEffect(() => {
     showReview();
-  });
+  }, []);
+
+  const review_Arr = [];
   const showReview = async () => {
     try {
       const response = await axios.get("http://localhost:3000/productReview");
-
-      if (Array.isArray(response.data)) {
-        setReviewArr(response.data);
-      } else if (typeof response.data === "object") {
-        const dataArray = Object.values(response.data);
-        setReviewArr(dataArray);
-        // console.log(reviewArr);
-      }
+      response.data.map((val) => {
+        if (parseInt(val.productId) === parseInt(id)) {
+          review_Arr.push(val);
+        }
+      });
     } catch (error) {
       console.log(error.message);
     }
+    setReviewArr(review_Arr);
   };
-  console.log(typeof reviewArr);
+  console.log(reviewArr);
   const handleOnChange = (name, value) => {
     if (name === "rating") {
       setRating(value);
@@ -128,6 +137,7 @@ function SingleProduct() {
     setReviewField(() => ({
       ...reviewField,
       [name]: value,
+      date: new Date().toLocaleString(),
     }));
   };
   return (
@@ -273,7 +283,11 @@ function SingleProduct() {
                           </div>
                         </div>
                         <div className="add-to-cart-btn">
-                          <Button>add to cart</Button>{" "}
+                          <NavLink to="/cart">
+                            <Button onClick={() => addToCart(curProduct)}>
+                              add to cart
+                            </Button>
+                          </NavLink>
                         </div>
                         <div className="boxess flex gap-2">
                           <Button>
@@ -312,97 +326,7 @@ function SingleProduct() {
                     </div>
                     {showInfo === 0 && (
                       <div className="discription-tab mt-4">
-                        <p>
-                          Uninhibited carnally hired played in whimpered dear
-                          gorilla koala depending and much yikes off far quetzal
-                          goodness and from for grimaced goodness unaccountably
-                          and meadowlark near unblushingly crucial scallop
-                          tightly neurotic hungrily some and dear furiously this
-                          apart.
-                        </p>
-                        <p>
-                          Spluttered narrowly yikes left moth in yikes bowed
-                          this that grizzly much hello on spoon-fed that alas
-                          rethought much decently richly and wow against the
-                          frequent fluidly at formidable acceptably flapped
-                          besides and much circa far over the bucolically hey
-                          precarious goldfinch mastodon goodness gnashed a
-                          jellyfish and one however because.
-                        </p>
-                        <ul className="product-more-infor mt-30">
-                          <li>
-                            <span>Type Of Packing</span> Bottle
-                          </li>
-                          <li>
-                            <span>Color</span> Green, Pink, Powder Blue, Purple
-                          </li>
-                          <li>
-                            <span>Quantity Per Case</span> 100ml
-                          </li>
-                          <li>
-                            <span>Ethyl Alcohol</span> 70%
-                          </li>
-                          <li>
-                            <span>Piece In One</span> Carton
-                          </li>
-                        </ul>
-                        {/* <hr className="wp-block-separator is-style-dots"> */}
-                        <p>
-                          Laconic overheard dear woodchuck wow this outrageously
-                          taut beaver hey hello far meadowlark imitatively
-                          egregiously hugged that yikes minimally unanimous
-                          pouted flirtatiously as beaver beheld above forward
-                          energetic across this jeepers beneficently cockily
-                          less a the raucously that magic upheld far so the this
-                          where crud then below after jeez enchanting drunkenly
-                          more much wow callously irrespective limpet.
-                        </p>
-                        <h4 className="mt-30">Packaging &amp; Delivery</h4>
-                        {/* <hr className="wp-block-separator is-style-wide"> */}
-                        <p className="mt-3">
-                          Less lion goodness that euphemistically robin
-                          expeditiously bluebird smugly scratched far while thus
-                          cackled sheepishly rigid after due one assenting
-                          regarding censorious while occasional or this more
-                          crane went more as this less much amid overhung
-                          anathematic because much held one exuberantly sheep
-                          goodness so where rat wry well concomitantly.
-                        </p>
-                        <p>
-                          Scallop or far crud plain remarkably far by thus far
-                          iguana lewd precociously and and less rattlesnake
-                          contrary caustic wow this near alas and next and pled
-                          the yikes articulate about as less cackled dalmatian
-                          in much less well jeering for the thanks blindly
-                          sentimental whimpered less across objectively fanciful
-                          grimaced wildly some wow and rose jeepers outgrew
-                          lugubrious luridly irrationally attractively
-                          dachshund.
-                        </p>
-                        <h4 className="mt-30">Suggested Use</h4>
-                        <ul className="product-more-infor mt-30">
-                          <li>Refrigeration not necessary.</li>
-                          <li>Stir before serving</li>
-                        </ul>
-                        <h4 className="mt-30">Other Ingredients</h4>
-                        <ul className="product-more-infor mt-30">
-                          <li>Organic raw pecans, organic raw cashews.</li>
-                          <li>
-                            This butter was produced using a LTG (Low
-                            Temperature Grinding) process
-                          </li>
-                          <li>
-                            Made in machinery that processes tree nuts but does
-                            not process peanuts, gluten, dairy or soy
-                          </li>
-                        </ul>
-                        <h4 className="mt-30">Warnings</h4>
-                        <ul className="product-more-infor mt-30">
-                          <li>
-                            Oil separation occurs naturally. May contain pieces
-                            of shell.
-                          </li>
-                        </ul>
+                        <p>{curProduct.description}</p>
                       </div>
                     )}
                     {showInfo === 1 && (
@@ -586,29 +510,30 @@ function SingleProduct() {
                           <h2 className="font-bold">
                             Customer questions & answers
                           </h2>
-                          {reviewArr.map((val) => {
-                            // console.log(val);
-
-                            <div className="review-card w-[60%] shadow-xl mt-4 border-t-4 flex py-4 items-center px-4 gap-8">
-                              <div className="cus-img text-center">
-                                <img src={ri} alt="" className="w-80" />
-                                <h1 className="mt-4 text-[#3BB77E] font-bold">
-                                  {reviewField.userName}
-                                </h1>
-                              </div>
-                              <div className="rv">
-                                <div className="top flex justify-between">
-                                  <div className="date text-[#3BB77E]">
-                                    December 4, 2022 at 3:12 pm
+                          {reviewArr.length !== 0 &&
+                            reviewArr.map((val) => {
+                              return (
+                                <div className="review-card w-[60%] shadow-xl mt-4 border-t-4 flex py-4 items-cente px-4 gap-8">
+                                  <div className="cus-img text-center">
+                                    <img src={ri} alt="" className="w" />
+                                    <h1 className="mt-4 text-[#3BB77E] font-bold">
+                                      {val.userName}
+                                    </h1>
                                   </div>
-                                  <div className="ratting">
-                                    <Rating value={reviewField.rating} />
+                                  <div className="rv ">
+                                    <div className="top flex justify-between gap-12 ">
+                                      <div className="date text-[#3BB77E]">
+                                        {val.date}
+                                      </div>
+                                      <div className="ratting ml-auto">
+                                        <Rating value={val.rating} />
+                                      </div>
+                                    </div>
+                                    <p className="mt-4">{val.review}</p>
                                   </div>
                                 </div>
-                                <p className="mt-4">{reviewField.review}</p>
-                              </div>
-                            </div>;
-                          })}
+                              );
+                            })}
                         </div>
                         <div className="form-section w-[60%] shadow-xl mt-8">
                           <h2 className="font-bold">add a review</h2>

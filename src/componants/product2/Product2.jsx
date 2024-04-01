@@ -1,13 +1,23 @@
 import { Button, Rating } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaRegHeart, FaRegEye } from "react-icons/fa";
 import { MdOutlineCompareArrows } from "react-icons/md";
 import { useProductContext } from "../../context/productContext";
 import "./Product2.css";
 import { NavLink } from "react-router-dom";
+import { CartContaxt, useCartContext } from "../../context/cartContext";
 function Product2(props) {
   const featureProducts = useProductContext();
+  const { addToCart } = useCartContext();
+  // const context = useCartContext(CartContaxt);
+  // useEffect(() => {
+  //   addToCart;
+  // }, []);
+
+  const addTooCart = () => {
+    addToCart(props.value);
+  };
 
   return (
     <>
@@ -83,9 +93,12 @@ function Product2(props) {
                     </div>
                   </div>
                   <div className="cart-btn">
-                    <Button>
-                      <FiShoppingCart /> add
-                    </Button>
+                    <NavLink to="/cart">
+                      {" "}
+                      <Button onClick={addTooCart}>
+                        <FiShoppingCart /> add
+                      </Button>
+                    </NavLink>
                   </div>
                 </div>
               </div>

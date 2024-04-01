@@ -137,7 +137,7 @@ const productReducer = (state, action) => {
           return val.cat_name === "Atta & Flours";
         });
       });
-      console.log(attaAndFLoor);
+      // console.log(attaAndFLoor);
       return {
         ...state,
         attaAndFLoors: attaAndFLoor,
@@ -160,7 +160,7 @@ const productReducer = (state, action) => {
           return val.cat_name === "Rice & Rice Products";
         });
       });
-      console.log(riceAndRiceProduct);
+      // console.log(riceAndRiceProduct);
       return {
         ...state,
         riceAndRiceProducts: riceAndRiceProduct,
@@ -173,7 +173,7 @@ const productReducer = (state, action) => {
           return val.cat_name === "Mobiles & Tablets";
         });
       });
-      console.log(mobilesAndTablet);
+      // console.log(mobilesAndTablet);
       return {
         ...state,
         mobilesAndTablets: mobilesAndTablet,
@@ -185,7 +185,7 @@ const productReducer = (state, action) => {
           return val.cat_name === "TV & Speaker";
         });
       });
-      console.log(TVAndSpeakers);
+      // console.log(TVAndSpeakers);
       return {
         ...state,
         TVAndSpeaker: TVAndSpeakers,
@@ -197,7 +197,7 @@ const productReducer = (state, action) => {
           return val.cat_name === "Men Western Wear";
         });
       });
-      console.log(menWesternWears);
+      // console.log(menWesternWears);
       return {
         ...state,
         menWesternWear: menWesternWears,
@@ -209,7 +209,7 @@ const productReducer = (state, action) => {
           return val.cat_name === "Women Western Wear";
         });
       });
-      console.log(woMenWesternWears);
+      // console.log(woMenWesternWears);
       return {
         ...state,
         woMenWesternWear: woMenWesternWears,

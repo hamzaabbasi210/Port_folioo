@@ -10,12 +10,9 @@ import { CartContaxt, useCartContext } from "../../context/cartContext";
 function Product2(props) {
   const featureProducts = useProductContext();
   const { addToCart } = useCartContext();
-  // const context = useCartContext(CartContaxt);
-  // useEffect(() => {
-  //   addToCart;
-  // }, []);
 
   const addTooCart = () => {
+    props.value.quantity = 1;
     addToCart(props.value);
   };
 

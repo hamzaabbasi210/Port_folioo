@@ -15,9 +15,11 @@ import { CiHeart } from "react-icons/ci";
 import { IoSettingsOutline } from "react-icons/io5";
 import { PiSignOut } from "react-icons/pi";
 import ClickAwayListener from "react-click-away-listener";
+import { useCartContext } from "../../context/cartContext";
 
 function Header() {
   const [accountDropdown, setAccountDropdown] = useState(false);
+  const { cart } = useCartContext();
   const [categories, setCategories] = useState([
     "All categories",
     "Dairy Milk",
@@ -89,22 +91,22 @@ function Header() {
         <div className="header-icons flex items-center borer h-[45px] gap-6 ml-auto font-thin ">
           <div className="compare-icon flex items-center justify-center relative gap-2 ">
             <img src={compare} alt="" className="w-5 " />
-            <div className="absolute flex items-center justify-center left-2 -top-2 bg-[#3BB77E] w-4 rounded-full text-white text-center h-4">
+            <div className="absolute flex items-center justify-center left-2 -top-2 bg-[#3BB77E] w-6 rounded-full text-white text-center h-6">
               0
             </div>
             <span>compare</span>
           </div>
           <div className="wishlist-icon flex items-center justify-center relative gap-2 ">
             <img src={heart} alt="" className="w-5 " />
-            <div className="absolute flex items-center justify-center left-2 -top-2 bg-[#3BB77E] w-4 rounded-full text-white text-center h-4">
+            <div className="absolute flex items-center justify-center left-2 -top-2 bg-[#3BB77E] w-6 rounded-full text-white text-center h-6">
               0
             </div>
             <span>wishlist</span>
           </div>
           <div className="cart-icon flex items-center justify-center relative gap-2 ">
             <img src={cart} alt="" className="w-5 " />
-            <div className="absolute flex items-center justify-center left-2 -top-2 bg-[#3BB77E] w-4 rounded-full text-white text-center h-4">
-              0
+            <div className="absolute flex items-center justify-center left-2 -top-2 bg-[#3BB77E]  rounded-full text-white text-center font-bold w-6 h-6">
+              {cart.length}
             </div>
             <span>cart</span>
           </div>
@@ -114,9 +116,9 @@ function Header() {
               onClick={() => setAccountDropdown(!accountDropdown)}
             >
               <img src={user} alt="" className="w-5 " />
-              <span className="absolute flex items-center justify-center left-2 -top-2 bg-[#3BB77E] w-4 rounded-full text-white text-center h-4">
+              {/* <span className="absolute flex items-center justify-center left-2 -top-2 bg-[#3BB77E] w-4 rounded-full text-white text-center h-4">
                 0
-              </span>
+              </span> */}
               <span>account</span>
 
               {accountDropdown === true && (

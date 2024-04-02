@@ -1,13 +1,18 @@
 import { Button, Rating } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaRegTrashAlt, FaLongArrowAltRight } from "react-icons/fa";
 import "./Cart.css";
 import QuantityBox from "../../componants/quantityBox/QuantityBox";
 import { useCartContext } from "../../context/cartContext";
 function cart() {
-  const { cart } = useCartContext();
+  const { cart, cartItems } = useCartContext();
+
   console.log(cart);
+  const updateCart = (item) => {
+    cartItems = item;
+  };
+
   return (
     <>
       <div className="cart-container">
@@ -45,8 +50,8 @@ function cart() {
                         </tr>
                       </thead>
                       <tbody>
-                        {cart.map((val) => {
-                          // console.log(val.price);
+                        {cart.map((val, index) => {
+                          const subtotal = val.price * val.quantity;
                           return (
                             <tr>
                               <td>
@@ -60,17 +65,27 @@ function cart() {
                                   </div>
                                   <div className="table-info">
                                     <h4 className="text-lg">
-                                      {val.productName}
+                                      <NavLink to={`/singleProduct/${val.id}`}>
+                                        {val.productName}
+                                      </NavLink>{" "}
                                     </h4>
                                     <Rating value={parseInt(val.rating)} />
                                   </div>
                                 </div>
                               </td>
-                              <td>$S{val.price}</td>
                               <td>
-                                <QuantityBox qunatity={val.quantity} />
+                                $ {parseInt(val.price.split(",").join(""))}
                               </td>
-                              <td>$21.9</td>
+                              <td>
+                                <QuantityBox
+                                  value={val}
+                                  cart={cart}
+                                  index={index}
+                                  updateCart={updateCart}
+                                />
+                              </td>
+                              {/* <td>${totalPrice.toFixed(2)}</td> */}
+                              <td>{subtotal}</td>
                               <td>
                                 <FaRegTrashAlt />
                               </td>

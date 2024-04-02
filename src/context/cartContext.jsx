@@ -11,6 +11,7 @@ import axios from "axios";
 const CartContaxt = createContext();
 const initialState = {
   cart: [],
+  cartItems,
 };
 
 const CartProvider = ({ children }) => {

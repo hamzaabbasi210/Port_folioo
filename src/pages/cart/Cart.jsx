@@ -6,12 +6,12 @@ import "./Cart.css";
 import QuantityBox from "../../componants/quantityBox/QuantityBox";
 import { useCartContext } from "../../context/cartContext";
 function cart() {
-  const { cart, cartItems } = useCartContext();
+  const { cart,removeItems, emptyCart, increment , decrement, total_amount } = useCartContext();
+console.log(typeof(total_amount))
 
-  console.log(cart);
-  const updateCart = (item) => {
-    cartItems = item;
-  };
+const removeItem = (id)=>{
+removeItems(id)
+}
 
   return (
     <>
@@ -31,10 +31,18 @@ function cart() {
                 </li>
               </ol>
             </nav>
+            
           </div>
           <div className="row mt-8 mb-56">
+            <div className="top flex justify-between">
+              <div className="cart-heading">
             <div className="hd">your cart</div>
-            <p>There are 3 products in your cart</p>
+            <p>There are <span className="text-[#3BB77D] font-bold"> {cart.length}</span> products in your cart</p>
+              </div>
+              <div className="clear-cart-btn">
+              <Button style={{backgroundColor:'#3BB77D',color:'white', fontWeight:'bold', padding:'.7rem 2rem'}} onClick={emptyCart}>Clear cart</Button>
+            </div>
+            </div>
             <div className="col-8">
               <div className="cart-left-container">
                 <div className="cart-items">
@@ -51,7 +59,6 @@ function cart() {
                       </thead>
                       <tbody>
                         {cart.map((val, index) => {
-                          const subtotal = val.price * val.quantity;
                           return (
                             <tr>
                               <td>
@@ -60,7 +67,7 @@ function cart() {
                                     <img
                                       src={val.catImg}
                                       alt=""
-                                      className="w-32 "
+                                      className="w-24 aspect-square "
                                     />
                                   </div>
                                   <div className="table-info">
@@ -78,20 +85,23 @@ function cart() {
                               </td>
                               <td>
                                 <QuantityBox
-                                  value={val}
-                                  cart={cart}
-                                  index={index}
-                                  updateCart={updateCart}
+                                  // amount={amount}
+                                  quantitty={val.quantity}
+                                  setIncrese={()=>increment(val.id)}
+                                  setDecrese={()=>decrement(val.id)}
                                 />
                               </td>
                               {/* <td>${totalPrice.toFixed(2)}</td> */}
-                              <td>{subtotal}</td>
+                              <td>${val.price.split(',').join('') * val.quantity }</td>
                               <td>
-                                <FaRegTrashAlt />
+                                <FaRegTrashAlt  onClick={()=>removeItem(val.id)}/>
                               </td>
                             </tr>
                           );
                         })}
+                        <NavLink to='/listing'>
+                        <Button style={{backgroundColor:'#3BB77D', marginTop:'2rem', color:'white', fontWeight:'bold', padding:'.5rem 2rem'}}>continue shopping</Button>
+                        </NavLink>
                       </tbody>
                     </table>
                   </div>
@@ -105,17 +115,20 @@ function cart() {
                     <h5 className="text-xl font-bold text-[#9e9999]">
                       subtotle
                     </h5>
-                    <h5 className="text-2xl font-bold">$21.9</h5>
+                    <h5 className="text-2xl font-bold">${total_amount}</h5>
                   </div>
                   <div className="subtotle flex justify-between border p-2 my-4">
                     <h5 className="text-xl font-bold text-[#9e9999]">
                       shipping
                     </h5>
-                    <h5 className="text-2xl font-bold">free</h5>
+                    <h5 className="text-2xl font-bold">5%</h5>
                   </div>
                   <div className="subtotle flex justify-between border p-2">
                     <h5 className="text-xl font-bold text-[#9e9999]">total</h5>
-                    <h5 className="text-2xl font-bold">$21.9</h5>
+                  
+
+                    <h5 className="text-2xl font-bold">${(total_amount + (total_amount * 0.05))}</h5>
+                    
                   </div>
                 </div>
                 <Button

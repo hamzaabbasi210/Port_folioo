@@ -12,7 +12,11 @@ import cat8 from "../../assets/208 (1).png";
 import cat9 from "../../assets/209 (1).png";
 import cat10 from "../../assets/210 (1).png";
 import "./CatSlider.css";
+import { useProductContext } from "../../context/productContext";
+import { NavLink } from "react-router-dom";
 function CatSlider() {
+  const { Products } = useProductContext();
+
   var settings = {
     dots: false,
     infinite: true,
@@ -24,6 +28,26 @@ function CatSlider() {
     autoplaySpeed: 1500,
     centerMode: true,
     centerPadding: "60px",
+    responsive: [
+      {
+        breakpoint: 1366,
+        settings: {
+          slidesToShow: 6,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
   return (
     <>
@@ -32,76 +56,35 @@ function CatSlider() {
           <h1 className="hd">feature category</h1>
           <div className="slide-items my-12 ">
             <Slider {...settings} className="">
-              <div className="row  bg-[#fffceb]">
-                <div className="col">
-                  <img src={cat1} alt="" />
-                  <h1>organic kiwi</h1>
-                  <p>14 items</p>
-                </div>
-              </div>
-              <div className="row bg-[#ecffec]">
-                <div className="col">
-                  <img src={cat2} alt="" />
-                  <h1>peach</h1>
-                  <p>14 items</p>
-                </div>
-              </div>
-              <div className="row bg-[#feefea]">
-                <div className="col">
-                  <img src={cat3} alt="" />
-                  <h1>red apple</h1>
-                  <p>14 items</p>
-                </div>
-              </div>
-              <div className="row bg-[#fff3eb]">
-                <div className="col">
-                  <img src={cat4} alt="" />
-                  <h1>snacks</h1>
-                  <p>14 items</p>
-                </div>
-              </div>
-              <div className="row bg-[#fff3ff]">
-                <div className="col">
-                  <img src={cat5} alt="" />
-                  <h1>vegetable</h1>
-                  <p>14 items</p>
-                </div>
-              </div>
-              <div className="row bg-[#f2fce4]">
-                <div className="col">
-                  <img src={cat6} alt="" />
-                  <h1>strawberry</h1>
-                  <p>14 items</p>
-                </div>
-              </div>
-              <div className="row bg-[#feefea]">
-                <div className="col">
-                  <img src={cat7} alt="" />
-                  <h1>black plum</h1>
-                  <p>14 items</p>
-                </div>
-              </div>
-              <div className="row bg-[#fffceb]">
-                <div className="col">
-                  <img src={cat8} alt="" />
-                  <h1>custard apple</h1>
-                  <p>14 items</p>
-                </div>
-              </div>
-              <div className="row bg-[#feefea]">
-                <div className="col">
-                  <img src={cat9} alt="" />
-                  <h1>coffe & tea</h1>
-                  <p>14 items</p>
-                </div>
-              </div>
-              <div className="row bg-[#ecffec]">
-                <div className="col">
-                  <img src={cat10} alt="" />
-                  <h1>headphone</h1>
-                  <p>14 items</p>
-                </div>
-              </div>
+              {Products.flatMap((val_) => {
+                console.log(val_.cat_name);
+                return val_.items.flatMap((val) => {
+                  return (
+                    <NavLink
+                      to={`/cat/${val_.cat_name.toLowerCase()}/${val.cat_name
+                        .split(" ")
+                        .join("-")
+                        .toLowerCase()}`}
+                    >
+                      <div className="row  bg-[#fffceb]">
+                        <div className="col">
+                          <img
+                            src={val.catImage}
+                            alt=""
+                            className="mix-blend-multiply	w-24 aspect-square mb-4"
+                          />
+                          <h1>
+                            {val.cat_name.length > 14
+                              ? val.cat_name.substr(0, 14)
+                              : val.cat_name + "..."}
+                          </h1>
+                          <p>{val.products.length} items</p>
+                        </div>
+                      </div>
+                    </NavLink>
+                  );
+                });
+              })}
             </Slider>
           </div>
         </div>

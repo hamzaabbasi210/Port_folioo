@@ -14,10 +14,12 @@ import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
 import Slider from "react-slick";
 import { useProductContext } from "../../context/productContext";
 import axios from "axios";
+import { useCartContext } from "../../context/cartContext";
 
 const Api = "http://localhost:3000/productData";
 function SingleProduct() {
   const { getSingleProduct, singleProduct } = useProductContext();
+  const {addToCart} = useCartContext()
   const { id } = useParams();
 
   const [curProduct, setCurProduct] = useState({});
@@ -35,13 +37,7 @@ function SingleProduct() {
     date: "",
   });
 
-  singleProduct.map((val) => {
-    return val.items.map((val) => {
-      return val.products.map((val) => {});
-    });
-  });
-  const data = new Date();
-  console.log(data);
+ 
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -55,7 +51,7 @@ function SingleProduct() {
         });
       });
     });
-  }, [id]);
+  }, [ '']);
 
   const increment = () => {
     if (inpVal < 10) {
@@ -129,7 +125,6 @@ function SingleProduct() {
     }
     setReviewArr(review_Arr);
   };
-  console.log(reviewArr);
   const handleOnChange = (name, value) => {
     if (name === "rating") {
       setRating(value);
@@ -140,6 +135,9 @@ function SingleProduct() {
       date: new Date().toLocaleString(),
     }));
   };
+  const addTooCart = (product) =>{
+addToCart(product)
+  }
   return (
     <>
       <div className="single-product-container  mb-56">
@@ -194,27 +192,7 @@ function SingleProduct() {
                       </Slider>
                     </div>
 
-                    {/* <div className="img-slider bg-re-400 " onClick={helo}>
-                      <Slider {...settings}>
-                        {curProduct.productImages.map((val) => {
-                          <img src={val} alt="" />;
-                        })}
-                         {curProduct.productImages.map((imageUrl, index) => { 
-                           console.log(imageUrl); 
-                           return (
-                             <img
-                               src={imageUrl}
-                               key={index}
-                               style={{
-                                 width: "100px",
-                                 height: "100px",
-                                 margin: "0px",
-                               }}
-                             />
-                           );
-                        })} 
-                      </Slider>
-                    </div>*/}
+                    
                   </div>
 
                   <div className="col-8 px-12">
@@ -284,7 +262,7 @@ function SingleProduct() {
                         </div>
                         <div className="add-to-cart-btn">
                           <NavLink to="/cart">
-                            <Button onClick={() => addToCart(curProduct)}>
+                            <Button onClick={()=>addTooCart(curProduct)}>
                               add to cart
                             </Button>
                           </NavLink>

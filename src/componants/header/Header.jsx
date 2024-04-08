@@ -16,6 +16,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { PiSignOut } from "react-icons/pi";
 import ClickAwayListener from "react-click-away-listener";
 import { useCartContext } from "../../context/cartContext";
+import { NavLink } from "react-router-dom";
 
 function Header() {
   const [accountDropdown, setAccountDropdown] = useState(false);
@@ -103,6 +104,7 @@ function Header() {
             </div>
             <span>wishlist</span>
           </div>
+          <NavLink to='/cart'>
           <div className="cart-icon flex items-center justify-center relative gap-2 ">
             <img src={cart} alt="" className="w-5 " />
             <div className="absolute flex items-center justify-center left-2 -top-2 bg-[#3BB77E]  rounded-full text-white text-center font-bold w-6 h-6">
@@ -110,6 +112,7 @@ function Header() {
             </div>
             <span>cart</span>
           </div>
+          </NavLink>
           <ClickAwayListener onClickAway={() => setAccountDropdown(false)}>
             <div
               className="user-icon flex items-center justify-center sticky gap-2 z-50 "
